@@ -1,4 +1,3 @@
-
 export type ToolType = {
   id: string;
   name: string;
@@ -10,13 +9,15 @@ export type CategoryType = {
   id: string;
   name: string;
   description: string;
-  tools: ToolType[]}[];
+  tools: ToolType[];
+}[];
 
-
-export const categories: CategoryType = [{
-    id: "developer",
-    name: "Developer Tools",
-    description: "Tools for developers to enhance productivity and code quality.",
+export const categories: CategoryType = [
+  {
+    id: 'developer',
+    name: 'Developer Tools',
+    description:
+      'Tools for developers to enhance productivity and code quality.',
     tools: [
       {
         id: 'json-formatter',
@@ -79,4 +80,30 @@ export const categories: CategoryType = [{
         icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>',
       },
     ],
-  }];
+  },
+  {
+    id: 'utility',
+    name: 'Utility Tools',
+    description: 'General-purpose tools for everyday tasks.',
+    tools: [
+      {
+        id: 'text-formatter',
+        name: 'Text Formatter',
+        description: 'Format and beautify text, remove extra spaces',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 4h16v2H4V8zm0 4h16v2H4v-2zm0 4h16v2H4v-2zm0 4h16v2H4v-2z"/></svg>',
+      },
+      {
+        id: 'number-converter',
+        name: 'Number Converter',
+        description: 'Convert between decimal, binary, octal, and hexadecimal',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1.5 14H9v-1.5h1.5V16zm0-3H9V9h1.5v4zm3-7h1.5V7H13V5zm3.5 7H15V9h1.5v4z"/></svg>',
+      },
+      {
+        id: 'qr-code-generator',
+        name: 'QR Code Generator',
+        description: 'Generate QR codes from text or URLs',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.41,11L19,8.59L17.59,10L15,7.41L13.59,9L11,6.41L9.59,8L7,5.41L5.59,7L3,4.41L1.59,6L3,7.41L5.41,10L3,12.41L1.59,14L3,15.41L5.41,18L3,20.41L1.59,22L3,23.41L5.41,21L7,23.41L9.59,21L11,23.41L13.59,21L15,23.41L17.59,21L19,23.41L21.41,21L23,19.59L20.59,17L22,15.59L19.41,13H21V11H21.41zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>',
+      },
+    ],
+  },
+];

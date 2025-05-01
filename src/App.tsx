@@ -43,7 +43,7 @@ function App() {
             {categories.map((category) => (
               <Route
                 key={category.name}
-                path={`/tools/${category.name}`}
+                path={`/tools/${category.id}`}
                 element={<Tools category={category} />}
               />
             ))}
@@ -51,7 +51,7 @@ function App() {
               category.tools.map((tool) => (
                 <Route
                   key={tool.id}
-                  path={`/tools/${category.name}/${tool.id}`}
+                  path={`/tools/${category.id}/${tool.id}`}
                   element={<Tools category={category} tool={tool} />}
                 />
               )),

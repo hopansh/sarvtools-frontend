@@ -36,6 +36,7 @@ const Styled = styled.div`
     }
   }
 `;
+
 const About: React.FC = () => {
   return (
     <Styled className="container">
@@ -47,14 +48,7 @@ const About: React.FC = () => {
           <div className="about-main">
             <img src={AboutUs} alt="logo" className="about-logo" />
             <Paragraph>
-              Welcome to <strong>{PROJECT_NAME}</strong>, a comprehensive
-              educational tool designed to simplify the learning and job-seeking
-              process for students and freshers. {PROJECT_NAME} offers three
-              main features: Automatic Quiz Generation, Notes Generation, and
-              Job Hunt assistance for freshers. Whether you're a student looking
-              to enhance your study methods or a recent graduate starting your
-              career, {PROJECT_NAME} provides valuable resources to support your
-              journey.
+              Welcome to <strong>SarvTools.in</strong>, a zero-server, privacy-focused toolbox designed to empower developers, students, and professionals with a wide range of utilities. With over 50+ tools across various categories, SarvTools.in ensures 100% client-side processing, keeping your data private and secure.
             </Paragraph>
           </div>
           <Title level={3}>
@@ -63,42 +57,27 @@ const About: React.FC = () => {
           <Paragraph>
             <ul>
               <li>
-                <strong>Automatic Quiz Generation:</strong> Provide a web URL or
-                upload a document, and {PROJECT_NAME} will automatically create
-                a quiz based on the content.
+                <strong>Privacy-Focused:</strong> All tools run entirely on your browser, ensuring no data leaves your device.
               </li>
               <li>
-                <strong>Notes Generator:</strong> Transform lengthy texts or
-                documents into concise, easy-to-understand notes.
+                <strong>Developer Tools:</strong> JSON Formatter, Regex Tester, Base64 Converter, and more to enhance productivity.
               </li>
               <li>
-                <strong>Job Hunt for Freshers:</strong> Access curated job
-                listings tailored for recent graduates and entry-level
-                positions.
+                <strong>Utility Tools:</strong> Color Converter, Timestamp Converter, Lorem Ipsum Generator, and others for everyday tasks.
               </li>
               <li>
-                <strong>Easy Organization:</strong> Manage all your quizzes and
-                notes in one place with our intuitive interface.
+                <strong>Open Source:</strong> Contribute to the project and add your own tools to the platform.
               </li>
               <li>
-                <strong>Customizable Settings:</strong> Tailor the quizzes and
-                notes to suit your needs with various customization options.
-              </li>
-              <li>
-                <strong>User Friendly Dashboard:</strong> Navigate through all
-                features with ease using our clean and simple dashboard.
+                <strong>User-Friendly Interface:</strong> Navigate through tools effortlessly with a clean and intuitive design.
               </li>
             </ul>
           </Paragraph>
           <Title level={3}>
-            <SettingOutlined /> Why {PROJECT_NAME}?
+            <SettingOutlined /> Why SarvTools.in?
           </Title>
           <Paragraph>
-            {PROJECT_NAME} is your all-in-one solution for academic success and
-            career kickstart. It not only saves you time in creating study
-            materials but also streamlines your job search process. Our app
-            ensures high-quality content generation and provides valuable
-            resources to help you excel in your studies and land your dream job.
+            SarvTools.in is your go-to solution for quick, reliable, and secure tools. Whether you're a developer debugging code, a student working on assignments, or a professional managing tasks, SarvTools.in provides a comprehensive suite of tools to simplify your workflow.
           </Paragraph>
           <Title level={3}>
             <GlobalOutlined /> Getting Started
@@ -106,24 +85,13 @@ const About: React.FC = () => {
           <Paragraph>
             <ol>
               <li>
-                <strong>Explore Features:</strong> Navigate through our Quiz
-                Generator, Notes Generator, and Job Hunt sections.
+                <strong>Explore Tools:</strong> Browse through our extensive collection of tools across categories.
               </li>
               <li>
-                <strong>Input Content:</strong> For quizzes and notes, enter a
-                web URL or upload a document (.pdf/.txt).
+                <strong>Use Instantly:</strong> No sign-ups or installations required. Just open a tool and start using it.
               </li>
               <li>
-                <strong>Generate Content:</strong> Let our app create quizzes or
-                notes based on your input.
-              </li>
-              <li>
-                <strong>Customize:</strong> Adjust settings to fit your specific
-                requirements.
-              </li>
-              <li>
-                <strong>Job Search:</strong> Browse job listings, create your
-                profile, and start applying.
+                <strong>Contribute:</strong> Add new tools or improve existing ones by contributing to our open-source repository.
               </li>
             </ol>
           </Paragraph>
@@ -136,9 +104,7 @@ const About: React.FC = () => {
         <div className="contact-us-container">
           <Space direction="vertical" size="small" style={{ display: 'flex' }}>
             <Paragraph>
-              We'd love to hear from you! If you have any questions,
-              suggestions, or need support, feel free to reach out to us through
-              the following channels:
+              We'd love to hear from you! If you have any questions, suggestions, or need support, feel free to reach out to us through the following channels:
             </Paragraph>
             <Title level={3}>
               <MailOutlined /> Email
@@ -151,6 +117,11 @@ const About: React.FC = () => {
             <Title level={3}>
               <InstagramOutlined /> Instagram
             </Title>
+            <Paragraph>
+              <a href="https://instagram.com/sarvtools" target="_blank" rel="noopener noreferrer">
+                @sarvtools
+              </a>
+            </Paragraph>
           </Space>
           <img
             src={Logo}

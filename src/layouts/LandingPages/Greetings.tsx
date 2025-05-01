@@ -9,7 +9,7 @@ import { theme } from '@/styles';
 const Styled = styled.div`
   padding-bottom: 180px;
   @media (max-width: 768px) {
-    padding-bottom: 50px;
+    padding-bottom: 100px;
   }
   .hi-container {
     width: 150px;
@@ -21,11 +21,14 @@ const Styled = styled.div`
   .headline{
     font-size: ${theme.fontSizes.xxxxxLarge};
     font-family: ${theme.fonts.headline};
+    @media (max-width: 768px) {
+      font-size: ${theme.fontSizes.xxxxLarge};
+    }
   }
     .sub-headline {
     font-size: ${theme.fontSizes.large};
     font-weight: 400;
-    font-family: ${theme.fonts.subHeadline};
+    // font-family: ${theme.fonts.subHeadline};
 `;
 const Greetings = () => {
   const navigate = useNavigate();
