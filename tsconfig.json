@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Specify the target ECMAScript version
+    "module": "commonjs", // Specify the module system (commonjs for Node.js)
+    "jsx": "react-jsx", // Enable JSX support for React
+    "strict": true, // Enable strict type checking
+    "esModuleInterop": true, // Allow interoperability with CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/components/ErrorBoundary",
+    "custom.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}
