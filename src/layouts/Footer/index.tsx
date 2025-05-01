@@ -10,9 +10,7 @@ import {
   LinkedinOutlined,
   InstagramOutlined,
 } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { categories, ToolType } from '@/constants/tools';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const { Title, Text } = Typography;
 
@@ -67,9 +65,7 @@ const Copyright = styled(Text)`
 `;
 
 const FooterSection: React.FC = () => {
-
-
-  const tools: ToolType[] = categories.map(({ tools }) => tools).flat();
+  const tools = useSiteConfig().tools;
 
   return (
     <StyledFooter>
@@ -83,7 +79,8 @@ const FooterSection: React.FC = () => {
             <FooterTitle level={4}>Tools</FooterTitle>
             {tools.map((tool) => (
               <FooterLink key={tool.id} to={`/tools/${tool.id}`}>
-                {tool.name}<br/>
+                {tool.name}
+                <br />
               </FooterLink>
             ))}
           </Col>

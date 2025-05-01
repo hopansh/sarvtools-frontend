@@ -1,4 +1,3 @@
-import React from 'react';
 import { Global } from '@emotion/react';
 import { globalStyles } from '@/styles/globalStyles';
 import About from './pages/About';
@@ -11,8 +10,8 @@ import Wrapper from './components/common/Wrapper';
 import Home from './pages/Home';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/DataPrivacy';
-import { categories } from './constants/tools';
 import Tools from './pages/Tools';
+import { SiteConfigProvider, useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const Styled = styled.div`
   width: 100vw;
@@ -27,41 +26,36 @@ const Styled = styled.div`
 `;
 
 function App() {
+  const tools = useSiteConfig().tools;
 
   return (
-    <Wrapper>
-      <Global styles={globalStyles} />
-      <Styled>
-        <HeaderSection />
-        <div className="body">
-          <Routes>
-            <Route path="*" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<About />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            {categories.map((category) => (
-              <Route
-                key={category.name}
-                path={`/tools/${category.id}`}
-                element={<Tools category={category} />}
-              />
-            ))}
-            {categories.map((category) =>
-              category.tools.map((tool) => (
+    <SiteConfigProvider>
+      <Wrapper>
+        <Global styles={globalStyles} />
+        <Styled>
+          <HeaderSection />
+          <div className="body">
+            <Routes>
+              <Route path="*" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<About />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              {tools.map((tool) => (
                 <Route
                   key={tool.id}
-                  path={`/tools/${category.id}/${tool.id}`}
-                  element={<Tools category={category} tool={tool} />}
+                  path={`/tools/${tool.id}`}
+                  element={<Tools tool={tool} />}
                 />
-              )),
-            )}
-            <Route path="/tools" element={<Tools />} />
-          </Routes>
-        </div>
-        <FooterSection />
-      </Styled>
-    </Wrapper>
+              ))}
+
+              <Route path="/tools" element={<Tools />} />
+            </Routes>
+          </div>
+          <FooterSection />
+        </Styled>
+      </Wrapper>
+    </SiteConfigProvider>
   );
 }
 

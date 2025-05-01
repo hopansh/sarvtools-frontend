@@ -17,7 +17,11 @@ export const globalStyles = css`
     width: 100vw;
     cursor: context-menu;
   }
-
+  a {
+    text-decoration: none;
+    color: unset;
+    transition: all 0.3s ease-in-out;
+  }
   * {
     margin: 0;
     padding: 0;

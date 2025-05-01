@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import styled from '@emotion/styled';
-import { PROJECT_NAME } from '@/constants/common';
 import { theme } from '@/styles';
 import { Link, useLocation } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
-import Logo from '@/assets/logo.png';
 import { Dropdown, Button, MenuProps } from 'antd';
 import { DownOutlined, MenuOutlined } from '@ant-design/icons';
-
-import { categories } from '@/constants/tools';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
+import { getLazyComponentByKey } from '@/utils/getLazyComponentByKey';
 
 const Header = styled.header<{ isVisible: boolean }>`
   display: flex;
@@ -87,29 +85,22 @@ const HeaderSection: React.FC = () => {
     location.pathname !== '/' ? true : false,
   );
   const [lastScrollY, setLastScrollY] = useState(0);
+  const config = useSiteConfig();
+  const tools = config.tools;
+  const LogoComponent = getLazyComponentByKey(config.logo);
 
-  const toolsMenuItems: MenuProps['items'] = categories.map(
-    ({ id, name, tools }) => ({
-      key: id,
-      label: <Link to={`/tools/${id}`}>{name}</Link>,
-      children: tools.map((tool) => ({
-        key: tool.id,
-        label: <Link to={`/tools/${id}/${tool.id}`}>{tool.name}</Link>,
-      })),
-    }),
-  );
+  const toolsMenuItems: MenuProps['items'] = tools.map((tool) => ({
+    key: tool.id,
+    label: <Link to={`/tools/${tool.id}`}>{tool.name}</Link>,
+  }));
 
   const mobileMenuItems: MenuProps['items'] = [
-    {
-      key: 'tools',
-      label: 'Tools',
-      children: toolsMenuItems,
-    },
+    { key: 'tools', label: 'Tools', children: toolsMenuItems },
     { key: 'about', label: <Link to="/about">About</Link> },
   ];
 
   useEffect(() => {
-    if(isHeaderVisible) return;
+    if (isHeaderVisible) return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -128,14 +119,19 @@ const HeaderSection: React.FC = () => {
   return (
     <Header isVisible={isHeaderVisible}>
       <Branding to="/">
-        <img src={Logo} alt="logo" width="36px" height="36px" />
-        {PROJECT_NAME}
+        <Suspense fallback={<span>Loading...</span>}>
+          {LogoComponent && <LogoComponent width={36} height={36} />}
+        </Suspense>
+        {config.headerTitle}
       </Branding>
 
       <NavSection>
         <NavItem>
           <Dropdown menu={{ items: toolsMenuItems }} placement="bottomCenter">
-            <NavLink to="/tools" isActive={location.pathname.startsWith('/tools')}>
+            <NavLink
+              to="/tools"
+              isActive={location.pathname.startsWith('/tools')}
+            >
               Tools <DownOutlined />
             </NavLink>
           </Dropdown>

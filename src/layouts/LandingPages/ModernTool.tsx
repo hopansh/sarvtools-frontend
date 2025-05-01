@@ -1,13 +1,10 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import Logo from '@/assets/ai.png';
 import { ToolOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { Typography, Space } from 'antd';
-import { RootState } from '@/store/store';
+import { Typography, Space, List } from 'antd';
 import { theme } from '@/styles';
 import MiniCard, { MiniCardProps } from '@/components/common/Atoms/MiniCard';
-import { categories } from '@/constants/tools';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const { Title, Paragraph } = Typography;
 
@@ -89,8 +86,9 @@ const Styled = styled.div`
 `;
 
 const ModernTool = () => {
-
-  const cards: MiniCardProps[] = categories.map(({ name, description }) => ({
+  const config = useSiteConfig();
+  const tools = config.tools;
+  const cards: MiniCardProps[] = tools.map(({ name, description }) => ({
     title: name,
     description,
     icon: <ToolOutlined />,
@@ -100,19 +98,23 @@ const ModernTool = () => {
     <Styled className="container">
       <div className="section left-section">
         <Title level={1} className="headline">
-          Discover Modern Tools for Every Need
+          {config.headlines.modernTool}
         </Title>
         <Paragraph className="sub-headline">
-          Explore a wide range of tools designed to simplify your tasks, from
-          development to design, text processing, and more.
+          {config.subHeadlines.modernTool}
         </Paragraph>
-        <Space direction="vertical" className="feature-list">
-          <div className="card-container">
-            {cards.map((card, index) => (
-              <MiniCard key={index} {...card} />
-            ))}
-          </div>
-        </Space>
+        <div className="feature-list">
+          <List
+            grid={{ gutter: 16, xs: 1, sm: 2, md: 2, lg: 2, xl: 2, xxl: 3 }}
+            dataSource={cards}
+            renderItem={(card, index) => (
+              <List.Item key={index} style={{ display: 'flex', justifyContent: 'center' }}>
+                <MiniCard {...card} />
+              </List.Item>
+            )}
+            style={{ maxHeight: 420, overflowY: 'auto' }}
+          />
+        </div>
       </div>
       <div className="section right-section">
         <img

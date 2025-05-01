@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import Logo from '@/assets/logo.png';
 import styled from '@emotion/styled';
 import { theme } from '@/styles';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const Styled = styled.div`
   padding-bottom: 180px;
@@ -32,6 +33,7 @@ const Styled = styled.div`
 `;
 const Greetings = () => {
   const navigate = useNavigate();
+  const config = useSiteConfig();
 
   const getStarted = () => {
     navigate('/tools');
@@ -44,13 +46,9 @@ const Greetings = () => {
   return (
     <Styled className="container">
       <img src={Logo} alt="logo" className="hi-container levitate" />
-      <div className="headline">{PROJECT_NAME}</div>
+      <div className="headline">{config.headlines.greeting}</div>
       <div className="sub-headline">
-        A privacy-focused toolbox offering 50+ tools for developers, writers,
-        designers, and more.
-        <br />
-        Explore tools across categories like Developer Utilities, Text
-        Processing, Image Tools, Financial Calculators, and more.
+        {config.subHeadlines.greeting}
       </div>
       <div className="content-container">
         <Button type="default" size="large" onClick={scrollDown}>

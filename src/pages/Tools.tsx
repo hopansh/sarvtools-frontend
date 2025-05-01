@@ -1,7 +1,9 @@
 import { toolComponents } from '@/constants/toolMap';
-import { categories, ToolType } from '@/constants/tools';
+import { ToolType } from '@/constants/tools';
 import styled from '@emotion/styled';
-import React, { Suspense, useState } from 'react';
+import { Suspense } from 'react';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
+import { Link } from 'react-router-dom';
 
 // Styled component moved outside the function for optimization
 const Styled = styled.div`
@@ -75,33 +77,9 @@ const Styled = styled.div`
   }
 `;
 
-type CategoryType = {
-  name: string;
-  tools?: ToolType[];
-};
-
-function Tools({
-  category,
-  tool,
-}: {
-  category?: CategoryType;
-  tool?: ToolType | null;
-}) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    category?.name || null,
-  );
-
+function Tools({ tool }: { tool?: ToolType | null }) {
+  const tools = useSiteConfig().tools;
   const ToolComponent = tool?.id ? toolComponents[tool.id] : null;
-
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
-    setSelectedCategory(event.target.value || null);
-  };
-
-  const filteredCategories = selectedCategory
-    ? categories.filter((cat) => cat.name === selectedCategory)
-    : categories;
 
   return (
     <Styled>
@@ -110,41 +88,18 @@ function Tools({
           {ToolComponent ? <ToolComponent /> : <div>Error loading tool</div>}
         </Suspense>
       ) : (
-        <>
-          <div className="tools-header">{category?.name || 'All Tools'}</div>
-          <div className="filter-container">
-            <select
-              value={selectedCategory || ''}
-              onChange={handleCategoryChange}
-            >
-              <option value="">All Categories</option>
-              {categories.map((cat) => (
-                <option key={cat.name} value={cat.name}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          {filteredCategories.length > 0 ? (
-            filteredCategories.map((cat) => (
-              <div key={cat.name}>
-                <div className="tools-header">{cat.name}</div>
-                <div className="tools-list">
-                  {cat.tools?.map((t) => (
-                    <div key={t.id} className="tool-item">
-                      <div className="tool-icon">🔧</div>{' '}
-                      {/* Replace with actual icons */}
-                      <div className="tool-name">{t.name}</div>
-                      <div className="tool-description">{t.description}</div>
-                    </div>
-                  ))}
-                </div>
+        <div className="tools-list">
+          {tools?.map((t) => (
+            <Link to={`/tools/${t.id}`} key={t.id}>
+              <div key={t.id} className="tool-item">
+                <div className="tool-icon">🔧</div>{' '}
+                {/* Replace with actual icons */}
+                <div className="tool-name">{t.name}</div>
+                <div className="tool-description">{t.description}</div>
               </div>
-            ))
-          ) : (
-            <div className="no-tools">No tools available</div>
-          )}
-        </>
+            </Link>
+          ))}
+        </div>
       )}
     </Styled>
   );
