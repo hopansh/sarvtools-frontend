@@ -139,10 +139,19 @@ function Tools() {
         <>
           <Button
             type="primary"
-            icon={<MenuUnfoldOutlined />}
+            shape="circle"
+            size="large"
+            icon={<MenuUnfoldOutlined />} 
             onClick={() => setDrawerOpen(true)}
-            style={{ position: 'fixed', top: 80, left: 12, zIndex: 999 }}
-          ></Button>
+            style={{
+              position: 'fixed',
+              bottom: 24,
+              right: 24,
+              zIndex: 999,
+              boxShadow: '0 4px 16px rgba(0,0,0,0.18)'
+            }}
+            aria-label="Open tools menu"
+          />
           <Drawer
             title="All Tools"
             placement="left"
