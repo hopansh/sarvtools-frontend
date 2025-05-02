@@ -8,7 +8,7 @@ import { theme } from '@/styles';
 const { Title } = Typography;
 
 const Section = styled.section`
-  width: 90%;
+  width: 100%;
   max-width: 1600px;
   @media (max-width: 900px) {
     width: 100%;
@@ -37,6 +37,7 @@ const Left = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 16px;
 `;
 const Right = styled.div`
   flex: 1;

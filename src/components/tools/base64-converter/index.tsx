@@ -36,38 +36,36 @@ export default function Base64Converter() {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>Base64 Converter</Title>
-          <Paragraph>
-            Convert text to and from <b>Base64</b> encoding. Useful for encoding data for transmission or decoding Base64-encoded strings.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Select <b>Encode</b> to convert plain text to Base64, or <b>Decode</b> to convert Base64 back to plain text. Paste your input and click the button.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Radio.Group value={mode} onChange={(e) => setMode(e.target.value)}>
-            <Radio value="encode">Encode</Radio>
-            <Radio value="decode">Decode</Radio>
-          </Radio.Group>
-          <TextArea
-            rows={5}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={mode === 'encode' ? 'Text to encode' : 'Base64 to decode'}
-          />
-          <Button type="primary" block onClick={handleConvert}>
-            {mode === 'encode' ? 'Encode' : 'Decode'}
-          </Button>
-          <TextArea
-            rows={5}
-            value={output}
-            readOnly
-            placeholder="Result will appear here"
-          />
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>Base64 Converter</Title>
+        <Paragraph>
+          Convert text to and from <b>Base64</b> encoding. Useful for encoding data for transmission or decoding Base64-encoded strings.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Select <b>Encode</b> to convert plain text to Base64, or <b>Decode</b> to convert Base64 back to plain text. Paste your input and click the button.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Radio.Group value={mode} onChange={(e) => setMode(e.target.value)}>
+          <Radio value="encode">Encode</Radio>
+          <Radio value="decode">Decode</Radio>
+        </Radio.Group>
+        <TextArea
+          rows={5}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={mode === 'encode' ? 'Text to encode' : 'Base64 to decode'}
+        />
+        <Button type="primary" block onClick={handleConvert}>
+          {mode === 'encode' ? 'Encode' : 'Decode'}
+        </Button>
+        <TextArea
+          rows={5}
+          value={output}
+          readOnly
+          placeholder="Result will appear here"
+        />
+      </Space>
     </Styled>
   );
 }

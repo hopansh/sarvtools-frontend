@@ -11,16 +11,7 @@ const routes = [
   { path: '/contact', element: <About /> },
   { path: '/terms-of-service', element: <TermsOfService /> },
   { path: '/privacy-policy', element: <PrivacyPolicy /> },
-  {
-    path: '/tools',
-    element: <Tools />,
-    children: [
-      ...tools.map((tool) => ({
-        path: `${tool.id}`,
-        element: <Tools tool={tool} />,
-      })),
-    ],
-  },
+  { path: '/tools/*', element: <Tools /> },
 ];
 
 export default routes;

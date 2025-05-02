@@ -1,5 +1,5 @@
 // CodeFormatter/ToolComponent.tsx
-import { Card, Select, Button, Space, Input, Typography } from 'antd';
+import { Select, Button, Space, Input, Typography } from 'antd';
 import { useState } from 'react';
 import prettier from 'prettier/standalone';
 import parserJson from 'prettier/plugins/babel';
@@ -56,43 +56,41 @@ export default function CodeFormatter() {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>Text/Code Formatter</Title>
-          <Paragraph>
-            Format and beautify your JSON, HTML, or CSS code for better readability. Useful for developers and students.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Select the code type, paste your code, and click <b>Format</b>. The formatted code will appear below.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Select
-            defaultValue="json"
-            style={{ width: 120 }}
-            onChange={setLanguage}
-          >
-            <Option value="json">JSON</Option>
-            <Option value="html">HTML</Option>
-            <Option value="css">CSS</Option>
-          </Select>
-          <TextArea
-            rows={10}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={`Paste ${language} code...`}
-          />
-          <Button type="primary" block onClick={handleFormat}>
-            Format
-          </Button>
-          <TextArea
-            rows={10}
-            value={output}
-            readOnly
-            placeholder="Formatted code will appear here"
-          />
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>Text/Code Formatter</Title>
+        <Paragraph>
+          Format and beautify your JSON, HTML, or CSS code for better readability. Useful for developers and students.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Select the code type, paste your code, and click <b>Format</b>. The formatted code will appear below.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Select
+          defaultValue="json"
+          style={{ width: 120 }}
+          onChange={setLanguage}
+        >
+          <Option value="json">JSON</Option>
+          <Option value="html">HTML</Option>
+          <Option value="css">CSS</Option>
+        </Select>
+        <TextArea
+          rows={10}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={`Paste ${language} code...`}
+        />
+        <Button type="primary" block onClick={handleFormat}>
+          Format
+        </Button>
+        <TextArea
+          rows={10}
+          value={output}
+          readOnly
+          placeholder="Formatted code will appear here"
+        />
+      </Space>
     </Styled>
   );
 }

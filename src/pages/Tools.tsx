@@ -1,107 +1,201 @@
-import { toolComponents } from '@/constants/toolMap';
-import { ToolType } from '@/constants/tools';
 import styled from '@emotion/styled';
-import { Suspense } from 'react';
+import { theme } from '@/styles';
+import { Layout, Menu, Button, Drawer, Grid } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  ToolOutlined,
+} from '@ant-design/icons';
+import React, { useState, Suspense } from 'react';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { Link } from 'react-router-dom';
+import { toolComponents } from '@/constants/toolMap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
 
-// Styled component moved outside the function for optimization
-const Styled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #f0f2f5;
-  min-height: 100vh;
+const { Sider, Content } = Layout;
+const { useBreakpoint } = Grid;
 
-  .tools-header {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 16px;
+const StyledLayout = styled(Layout)`
+  height: calc(100vh - ${HEADER_HEIGHT});
+  @media (max-width: 768px) {
+    height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
   }
+  overflow: hidden;
+  background: ${theme.colors.background2};
+`;
 
-  .tools-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-  }
-
-  .tool-item {
-    padding: 16px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    text-align: center;
-    width: 200px;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    .tool-icon {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
-
-    .tool-name {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .tool-description {
-      font-size: 14px;
-      color: #666;
+const StyledSider = styled(Sider)`
+  background: ${theme.colors.background2} !important;
+  height: 100%;
+  border-right: 1px solid ${theme.colors.background};
+  .ant-menu {
+    background: transparent !important;
+    overflow: auto;
+    padding-bottom: 80px;
+    @media (max-width: 768px) {
+      padding-bottom: 40px;
     }
   }
-
-  .no-tools {
-    font-size: 16px;
-    color: #888;
-  }
-
-  .filter-container {
-    margin-bottom: 16px;
-    display: flex;
-    gap: 8px;
-
-    select {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
+  .ant-layout-sider-trigger {
+    background: ${theme.colors.secondary} !important;
   }
 `;
 
-function Tools({ tool }: { tool?: ToolType | null }) {
-  const tools = useSiteConfig().tools;
-  const ToolComponent = tool?.id ? toolComponents[tool.id] : null;
+const SiderHeader = styled.div`
+  padding: 16px;
+  text-align: center;
+  font-weight: 700;
+  color: ${theme.colors.primary};
+  font-size: 20px;
+`;
+
+const StyledContent = styled(Content)`
+  background: ${theme.colors.background};
+  padding: 32px;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  max-height: 100%;
+  @media (max-width: 768px) {
+    padding: 16px 4px;
+  }
+`;
+
+const ToolCard = styled.div`
+  width: 100%;
+  background: ${theme.colors.white};
+  border-radius: ${theme.borders.radius};
+  box-shadow: ${theme.shadows.small};
+  padding: 32px;
+  min-height: 70vh;
+  max-height: 100%;
+  overflow: auto;
+  @media (max-width: 768px) {
+    max-height: calc(100% - 48px);
+  }
+  @media (max-width: 768px) {
+    padding: 18px 6px;
+  }
+`;
+
+function Tools() {
+  const { tools } = useSiteConfig();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
+
+  // Get tool id from URL: /tools/:toolId
+  const match = location.pathname.match(/\/tools\/?([^/]*)/);
+  const urlToolId = match && match[1] ? match[1] : '';
+  const defaultToolId = tools[0]?.id || '';
+  const [selectedKey, setSelectedKey] = useState(urlToolId || defaultToolId);
+
+  // Sync selectedKey with URL
+  React.useEffect(() => {
+    if (urlToolId && urlToolId !== selectedKey) {
+      setSelectedKey(urlToolId);
+    }
+    if (!urlToolId && selectedKey !== defaultToolId) {
+      setSelectedKey(defaultToolId);
+    }
+    // eslint-disable-next-line
+  }, [urlToolId, tools]);
+
+  // When selectedKey changes, update URL
+  React.useEffect(() => {
+    if (selectedKey && selectedKey !== urlToolId) {
+      navigate(`/tools/${selectedKey}`, { replace: true });
+    }
+    // eslint-disable-next-line
+  }, [selectedKey]);
+
+  const ToolComponent = selectedKey ? toolComponents[selectedKey] : null;
+
+  const menuItems = tools.map((tool) => ({
+    key: tool.id,
+    icon: <ToolOutlined />,
+    label: tool.name,
+  }));
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    setSelectedKey(key);
+    if (isMobile) setDrawerOpen(false);
+  };
 
   return (
-    <Styled>
-      {tool ? (
-        <Suspense fallback={<div>Loading tool...</div>}>
-          {ToolComponent ? <ToolComponent /> : <div>Error loading tool</div>}
-        </Suspense>
+    <StyledLayout>
+      {isMobile ? (
+        <>
+          <Button
+            type="primary"
+            icon={<MenuUnfoldOutlined />}
+            onClick={() => setDrawerOpen(true)}
+            style={{ position: 'fixed', top: 80, left: 12, zIndex: 999 }}
+          ></Button>
+          <Drawer
+            title="All Tools"
+            placement="left"
+            onClose={() => setDrawerOpen(false)}
+            open={drawerOpen}
+            bodyStyle={{ padding: 0 }}
+            width={220}
+          >
+            <Menu
+              mode="inline"
+              selectedKeys={[selectedKey]}
+              items={menuItems}
+              onClick={handleMenuClick}
+              style={{ height: '100%', borderRight: 0 }}
+            />
+          </Drawer>
+        </>
       ) : (
-        <div className="tools-list">
-          {tools?.map((t) => (
-            <Link to={`/tools/${t.id}`} key={t.id}>
-              <div key={t.id} className="tool-item">
-                <div className="tool-icon">🔧</div>{' '}
-                {/* Replace with actual icons */}
-                <div className="tool-name">{t.name}</div>
-                <div className="tool-description">{t.description}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <StyledSider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={setCollapsed}
+          width={220}
+        >
+          <SiderHeader>{collapsed ? <ToolOutlined /> : 'Tools'}</SiderHeader>
+          <Menu
+            mode="inline"
+            selectedKeys={[selectedKey]}
+            items={menuItems}
+            onClick={handleMenuClick}
+            style={{ height: '100%', borderRight: 0 }}
+          />
+        </StyledSider>
       )}
-    </Styled>
+      <StyledContent>
+        <ToolCard>
+          <Suspense
+            fallback={
+              <div style={{ padding: 32, textAlign: 'center' }}>
+                Loading tool...
+              </div>
+            }
+          >
+            {ToolComponent ? (
+              <ToolComponent />
+            ) : (
+              <div
+                style={{
+                  color: theme.colors.text,
+                  textAlign: 'center',
+                  padding: 32,
+                }}
+              >
+                Select a tool
+              </div>
+            )}
+          </Suspense>
+        </ToolCard>
+      </StyledContent>
+    </StyledLayout>
   );
 }
 

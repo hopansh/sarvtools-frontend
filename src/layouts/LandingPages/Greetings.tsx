@@ -8,6 +8,7 @@ import { theme } from '@/styles';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const Styled = styled.div`
+  min-height: 80vh;
   .hi-container {
     height: fit-content;
     margin: -2vw 0;

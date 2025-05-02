@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Space, Typography } from 'antd';
+import { Input, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { Title, Paragraph } = Typography;
@@ -30,22 +30,20 @@ const QRCodeGenerator = () => {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>QR Code Generator</Title>
-          <Paragraph>
-            Generate QR codes from any text or URL. Useful for sharing links, contact info, and more.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Enter your text or URL and click <b>Generate</b>. The QR code image will appear below.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Input value={text} onChange={e => setText(e.target.value)} placeholder="Enter text or URL..." />
-          <Button type="primary" block onClick={handleGenerate}>Generate</Button>
-          {url && <img src={url} alt="QR Code" style={{ marginTop: 12, maxWidth: '100%' }} />}
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>QR Code Generator</Title>
+        <Paragraph>
+          Generate QR codes from any text or URL. Useful for sharing links, contact info, and more.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Enter your text or URL and click <b>Generate</b>. The QR code image will appear below.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Input value={text} onChange={e => setText(e.target.value)} placeholder="Enter text or URL..." />
+        <Button type="primary" block onClick={handleGenerate}>Generate</Button>
+        {url && <img src={url} alt="QR Code" style={{ marginTop: 12, maxWidth: '100%' }} />}
+      </Space>
     </Styled>
   );
 };

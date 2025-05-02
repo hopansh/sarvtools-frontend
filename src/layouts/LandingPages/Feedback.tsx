@@ -25,12 +25,16 @@ const Styled = styled.div`
     border-radius: ${theme.borders.radius};
     box-shadow: ${theme.shadows.medium};
     padding: 24px;
+    @media (max-width: 768px) {
+      padding: 16px 24px;
+    }
     .headline {
       text-align: left;
       font-size: 54px;
       font-weight: 700;
       @media (max-width: 768px) {
-        font-size: 36px;
+        font-size: 32px;
+        padding-bottom: 16px;
       }
     }
     .sub-headline {
@@ -48,7 +52,7 @@ const Styled = styled.div`
     padding: 0 10vw;
     @media (max-width: 768px) {
       width: 100%;
-      padding: 0 5vw;
+      padding: 0 7vw;
     }
   }
 `;

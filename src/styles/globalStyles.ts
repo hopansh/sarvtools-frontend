@@ -72,11 +72,13 @@ export const globalStyles = css`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    justify-self: center;
     gap: 24px;
     width: 100vw;
     padding: 40px;
+    max-width: 1600px;
     @media (max-width: 768px) {
-      padding: 12px;
+      padding: 16px;
     }
   }
 

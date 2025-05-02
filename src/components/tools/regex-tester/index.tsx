@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Space, Alert, Typography } from 'antd';
+import { Input, Button, Space, Alert, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { TextArea } = Input;
@@ -34,23 +34,21 @@ const RegexTester = () => {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>Regex Tester</Title>
-          <Paragraph>
-            Test regular expressions against your input text. Useful for developers, testers, and learners.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Enter a regex pattern and some text, then click <b>Test</b>. Matches will be shown below.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Input value={pattern} onChange={e => setPattern(e.target.value)} placeholder="Regex pattern..." />
-          <TextArea rows={4} value={text} onChange={e => setText(e.target.value)} placeholder="Test text..." />
-          <Button type="primary" block onClick={handleTest}>Test</Button>
-          {result && <Alert message={result} type={result.startsWith('Matches') ? 'success' : 'error'} showIcon />}
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>Regex Tester</Title>
+        <Paragraph>
+          Test regular expressions against your input text. Useful for developers, testers, and learners.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Enter a regex pattern and some text, then click <b>Test</b>. Matches will be shown below.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Input value={pattern} onChange={e => setPattern(e.target.value)} placeholder="Regex pattern..." />
+        <TextArea rows={4} value={text} onChange={e => setText(e.target.value)} placeholder="Test text..." />
+        <Button type="primary" block onClick={handleTest}>Test</Button>
+        {result && <Alert message={result} type={result.startsWith('Matches') ? 'success' : 'error'} showIcon />}
+      </Space>
     </Styled>
   );
 };

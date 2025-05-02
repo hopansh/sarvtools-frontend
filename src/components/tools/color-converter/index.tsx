@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Space, Typography } from 'antd';
+import { Input, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { Title, Paragraph } = Typography;
@@ -53,35 +53,33 @@ const ColorConverter = () => {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>Color Converter</Title>
-          <Paragraph>
-            Convert between <b>HEX</b> and <b>RGB</b> color formats. Useful for designers and developers working with color codes.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Enter a HEX color (e.g. <code>#ff0000</code>) and click <b>HEX → RGB</b> to get the RGB value, or enter an RGB value (e.g. <code>rgb(255,0,0)</code>) and click <b>RGB → HEX</b>.
-          </Paragraph>
+      <div className="instructions">
+        <Title level={3}>Color Converter</Title>
+        <Paragraph>
+          Convert between <b>HEX</b> and <b>RGB</b> color formats. Useful for designers and developers working with color codes.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Enter a HEX color (e.g. <code>#ff0000</code>) and click <b>HEX → RGB</b> to get the RGB value, or enter an RGB value (e.g. <code>rgb(255,0,0)</code>) and click <b>RGB → HEX</b>.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <div className="input-row">
+          <Input
+            placeholder="#RRGGBB"
+            value={hex}
+            onChange={e => setHex(e.target.value)}
+          />
+          <Button onClick={handleHexToRgb} block>HEX → RGB</Button>
         </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <div className="input-row">
-            <Input
-              placeholder="#RRGGBB"
-              value={hex}
-              onChange={e => setHex(e.target.value)}
-            />
-            <Button onClick={handleHexToRgb} block>HEX → RGB</Button>
-          </div>
-          <div className="input-row">
-            <Input
-              placeholder="rgb(255,255,255)"
-              value={rgb}
-              onChange={e => setRgb(e.target.value)}
-            />
-            <Button onClick={handleRgbToHex} block>RGB → HEX</Button>
-          </div>
-        </Space>
-      </Card>
+        <div className="input-row">
+          <Input
+            placeholder="rgb(255,255,255)"
+            value={rgb}
+            onChange={e => setRgb(e.target.value)}
+          />
+          <Button onClick={handleRgbToHex} block>RGB → HEX</Button>
+        </div>
+      </Space>
     </Styled>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Select, Space, Typography } from 'antd';
+import { Input, Button, Select, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { TextArea } = Input;
@@ -41,26 +41,24 @@ const HashGenerator = () => {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>Hash Generator</Title>
-          <Paragraph>
-            Generate cryptographic hashes (SHA-256, MD5) for any input text. Useful for verifying file integrity, storing passwords, and more.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Select the hash algorithm, enter your text, and click <b>Generate</b>. <b>Note:</b> MD5 is not implemented in-browser and is shown as a placeholder.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Select value={algo} onChange={setAlgo} style={{ width: 120 }}>
-            <Option value="sha256">SHA-256</Option>
-            <Option value="md5">MD5</Option>
-          </Select>
-          <TextArea rows={4} value={input} onChange={e => setInput(e.target.value)} placeholder="Enter text..." />
-          <Button type="primary" block onClick={handleHash}>Generate</Button>
-          <TextArea rows={2} value={output} readOnly placeholder="Hash output will appear here" />
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>Hash Generator</Title>
+        <Paragraph>
+          Generate cryptographic hashes (SHA-256, MD5) for any input text. Useful for verifying file integrity, storing passwords, and more.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Select the hash algorithm, enter your text, and click <b>Generate</b>. <b>Note:</b> MD5 is not implemented in-browser and is shown as a placeholder.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Select value={algo} onChange={setAlgo} style={{ width: 120 }}>
+          <Option value="sha256">SHA-256</Option>
+          <Option value="md5">MD5</Option>
+        </Select>
+        <TextArea rows={4} value={input} onChange={e => setInput(e.target.value)} placeholder="Enter text..." />
+        <Button type="primary" block onClick={handleHash}>Generate</Button>
+        <TextArea rows={2} value={output} readOnly placeholder="Hash output will appear here" />
+      </Space>
     </Styled>
   );
 };

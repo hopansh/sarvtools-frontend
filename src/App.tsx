@@ -4,7 +4,7 @@ import About from './pages/About';
 import HeaderSection from '@/layouts/Header';
 import FooterSection from '@/layouts/Footer';
 import styled from '@emotion/styled';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
 import Wrapper from './components/common/Wrapper';
 import Home from './pages/Home';
@@ -25,35 +25,42 @@ const Styled = styled.div`
   }
 `;
 
-function App() {
+function AppContent() {
   const tools = useSiteConfig().tools;
+  const location = useLocation();
+  const isToolsPage = location.pathname === '/tools' || location.pathname.startsWith('/tools/');
 
+  return (
+    <Styled>
+      <HeaderSection />
+      <div className="body">
+        <Routes>
+          <Route path="*" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<About />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          {tools.map((tool) => (
+            <Route
+              key={tool.id}
+              path={`/tools/${tool.id}`}
+              element={<Tools />}
+            />
+          ))}
+          <Route path="/tools" element={<Tools />} />
+        </Routes>
+      </div>
+      {!isToolsPage && <FooterSection />}
+    </Styled>
+  );
+}
+
+function App() {
   return (
     <SiteConfigProvider>
       <Wrapper>
         <Global styles={globalStyles} />
-        <Styled>
-          <HeaderSection />
-          <div className="body">
-            <Routes>
-              <Route path="*" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<About />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              {tools.map((tool) => (
-                <Route
-                  key={tool.id}
-                  path={`/tools/${tool.id}`}
-                  element={<Tools tool={tool} />}
-                />
-              ))}
-
-              <Route path="/tools" element={<Tools />} />
-            </Routes>
-          </div>
-          <FooterSection />
-        </Styled>
+        <AppContent />
       </Wrapper>
     </SiteConfigProvider>
   );

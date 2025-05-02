@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, Space, Typography } from 'antd';
+import { Input, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { TextArea } = Input;
@@ -35,22 +35,20 @@ const JwtDecoder = () => {
 
   return (
     <Styled>
-      <Card>
-        <div className="instructions">
-          <Title level={3}>JWT Decoder</Title>
-          <Paragraph>
-            Decode the payload of a JSON Web Token (JWT) to view its contents. Useful for debugging authentication tokens and inspecting claims.
-          </Paragraph>
-          <Paragraph type="secondary">
-            <b>Instructions:</b> Paste your JWT string and click <b>Decode</b>. The decoded payload will appear below. This tool does not verify signatures.
-          </Paragraph>
-        </div>
-        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <TextArea rows={4} value={input} onChange={e => setInput(e.target.value)} placeholder="Paste JWT here..." />
-          <Button type="primary" block onClick={handleDecode}>Decode</Button>
-          <TextArea rows={8} value={output} readOnly placeholder="Decoded JWT payload will appear here" />
-        </Space>
-      </Card>
+      <div className="instructions">
+        <Title level={3}>JWT Decoder</Title>
+        <Paragraph>
+          Decode the payload of a JSON Web Token (JWT) to view its contents. Useful for debugging authentication tokens and inspecting claims.
+        </Paragraph>
+        <Paragraph type="secondary">
+          <b>Instructions:</b> Paste your JWT string and click <b>Decode</b>. The decoded payload will appear below. This tool does not verify signatures.
+        </Paragraph>
+      </div>
+      <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <TextArea rows={4} value={input} onChange={e => setInput(e.target.value)} placeholder="Paste JWT here..." />
+        <Button type="primary" block onClick={handleDecode}>Decode</Button>
+        <TextArea rows={8} value={output} readOnly placeholder="Decoded JWT payload will appear here" />
+      </Space>
     </Styled>
   );
 };
