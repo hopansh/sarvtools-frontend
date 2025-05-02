@@ -21,7 +21,7 @@ export interface SiteConfig {
 export const siteConfigs: Record<string, SiteConfig> = {
   dev: {
     logo: 'devLogo',
-    headerTitle: 'SarvTools Dev',
+    headerTitle: 'SarvTools',
     landingContent: 'Developer tools and resources.',
     headlines: {
       greeting: 'Welcome, Developer!',

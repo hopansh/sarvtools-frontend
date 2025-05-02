@@ -1,18 +1,19 @@
 export const theme = {
   colors: {
-    primary: '#1A2D57',
-    secondary: '#E1681C',
+    primary: '#000000FF',
+    secondary: '#636AE8FF',
     tertiary: '#161616',
-    accent: '#00BBE6',
+    accent: '#e8618cFF',
     black: '#000000',
     white: '#ffffff',
-    background: '#FFFFFF',
-    background2: '#F4F7FC',
-    text: '#494949',
+    background: '#FFFFFFFF',
+    background2: '#FAFAFBFF',
+    text: '#17A1FFF',
+    subtext: '#9095A0FF',
   },
   fonts: {
-    primary: '"Montserrat", sans-serif, -apple-system, system-ui ',
-    headline: `"Modak", system-ui`,
+    primary: '"Archivo", "Montserrat", sans-serif, -apple-system, system-ui ',
+    headline: `"Archivo", system-ui`,
     subHeadline: `"Bubblegum Sans", sans-serif`,
   },
   fontSizes: {
@@ -50,7 +51,7 @@ export const theme = {
     lRadius: '2rem', // 32px convertent to rem
   },
   shadows: {
-    small: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    small: '0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1F;',
     medium: '0 4px 6px rgba(0, 0, 0, 0.1)',
     large: '0 8px 12px rgba(0, 0, 0, 0.1)',
   },

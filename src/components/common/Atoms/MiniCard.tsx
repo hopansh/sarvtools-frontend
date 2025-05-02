@@ -1,20 +1,17 @@
 import { theme } from '@/styles';
 import styled from '@emotion/styled';
-import React from 'react';
 
 export type MiniCardProps = {
   title: string;
   description: string;
-  icon: React.ReactNode;
 };
 const Styled = styled.div`
   background: ${theme.colors.white};
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 220px;
-  padding: 24px;
-  gap: 16px;
+  flex-grow: 1;
+  padding: 12px;
   box-shadow: ${theme.shadows.small};
   transition: all 0.3s ease;
   text-align: left;
@@ -47,57 +44,37 @@ const Styled = styled.div`
 
   @media (max-width: 768px) {
     width: calc(50% - 8px);
-    height: 200px;
     padding: 16px;
-    gap: 12px;
+    gap: 6px;
   }
 
   .title {
-    font-size: 20px;
+    font-size: ${theme.fontSizes.small};
     font-weight: 600;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.text};
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-
     @media (max-width: 768px) {
       font-size: 12px;
-      gap: 6px;
     }
-  }
-
-  .icon {
-    font-size: 24px;
-    color: ${theme.colors.primary};
-    transition: transform 0.3s ease;
-
-    @media (max-width: 768px) {
-      font-size: 20px;
-    }
-  }
-
-  &:hover .icon {
-    transform: scale(1.1);
   }
 
   .description {
     font-size: 14px;
     font-weight: 400;
-    color: ${theme.colors.text};
-    line-height: 1.6;
-
+    color: ${theme.colors.subtext};
+    line-height: 1.4;
     @media (max-width: 768px) {
-      font-size: 12px;
+      font-size: 11px;
     }
   }
 `;
 
 const MiniCard = (props: MiniCardProps) => {
-  const { title, description, icon } = props;
+  const { title, description } = props;
   return (
     <Styled>
       <div className="title">
-        <span className="icon">{icon}</span>
         {title}
       </div>
       <div className="description">{description}</div>

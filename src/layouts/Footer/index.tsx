@@ -11,12 +11,13 @@ import {
   InstagramOutlined,
 } from '@ant-design/icons';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
+import Branding from '@/components/common/Atoms/Branding';
 
 const { Title, Text } = Typography;
 
 const StyledFooter = styled.footer`
-  background: ${theme.colors.tertiary};
-  color: ${theme.colors.white};
+  background: ${theme.colors.background2};
+  color: ${theme.colors.primary};
   padding: 40px 0;
   width: 100%;
   min-height: ${FOOTER_HEIGHT};
@@ -35,64 +36,73 @@ const FooterContent = styled.div`
 `;
 
 const FooterTitle = styled(Title)`
-  color: ${theme.colors.white} !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
 `;
 
 const FooterLink = styled(Link)`
-  color: ${theme.colors.white};
   text-decoration: none;
   transition: color 0.3s ease;
   &:hover {
-    color: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
   }
 `;
 
 const SocialIcon = styled.a`
-  color: ${theme.colors.white};
+  color: ${theme.colors.secondary};
   font-size: 24px;
-  margin-right: 16px;
+  margin-right: 8px;
   transition: color 0.3s ease;
-
   &:hover {
     color: ${theme.colors.primary};
   }
 `;
 
 const Copyright = styled(Text)`
-  color: ${theme.colors.white};
   opacity: 0.8;
 `;
 
 const FooterSection: React.FC = () => {
   const tools = useSiteConfig().tools;
 
+  const mid = Math.ceil(tools.length / 2);
+  const toolsCol1 = tools.slice(0, mid);
+  const toolsCol2 = tools.slice(mid);
+
   return (
     <StyledFooter>
       <FooterContent>
+        <Row justify="center" align="middle" style={{ marginBottom: '40px' }}>
+          <Branding />
+        </Row>
         <Row gutter={[32, 32]}>
           <Col xs={24} sm={12} md={6}>
             <FooterTitle level={4}>About Us</FooterTitle>
-            <FooterLink to="/about">About {PROJECT_NAME}</FooterLink>
+            <FooterLink to="/about">About</FooterLink>
           </Col>
           <Col xs={24} sm={12} md={12}>
             <FooterTitle level={4}>Tools</FooterTitle>
-            {tools.map((tool) => (
-              <FooterLink key={tool.id} to={`/tools/${tool.id}`}>
-                {tool.name}
-                <br />
-              </FooterLink>
-            ))}
+            <Row gutter={[0, 0]}>
+              <Col xs={24} sm={12}>
+                {toolsCol1.map((tool) => (
+                  <FooterLink key={tool.id} to={`/tools/${tool.id}`}>
+                    {tool.name}
+                    <br />
+                  </FooterLink>
+                ))}
+              </Col>
+              <Col xs={24} sm={12}>
+                {toolsCol2.map((tool) => (
+                  <FooterLink key={tool.id} to={`/tools/${tool.id}`}>
+                    {tool.name}
+                    <br />
+                  </FooterLink>
+                ))}
+              </Col>
+            </Row>
           </Col>
           <Col xs={24} sm={12} md={6}>
             <FooterTitle level={4}>Connect</FooterTitle>
-            <FooterLink to="/contact">Contact Us</FooterLink>
-            <br />
-            <Space
-              direction="horizontal"
-              size="middle"
-              style={{ marginTop: '10px' }}
-            >
+            <Space direction="horizontal" size="middle">
               <SocialIcon
                 href="https://github.com/hopansh"
                 target="_blank"
@@ -106,13 +116,6 @@ const FooterSection: React.FC = () => {
                 rel="noopener noreferrer"
               >
                 <LinkedinOutlined />
-              </SocialIcon>
-              <SocialIcon
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <InstagramOutlined />
               </SocialIcon>
             </Space>
           </Col>

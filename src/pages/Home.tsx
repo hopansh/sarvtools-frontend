@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import Greetings from '@/layouts/LandingPages/Greetings';
-import ModernTool from '@/layouts/LandingPages/ModernTool';
 import FAQs from '@/layouts/LandingPages/FAQs';
 import FeedbackForm from '@/layouts/LandingPages/Feedback';
 import { useLocation } from 'react-router-dom';
 import { theme } from '@/styles';
+import FeaturedTools from '@/layouts/LandingPages/FeaturedTools';
 
 const Styled = styled.div`
   .headline {
@@ -41,8 +41,8 @@ const components = [
     name: 'greetings',
   },
   {
-    element: ModernTool,
-    name: 'moderntool',
+    element: FeaturedTools,
+    name: 'featuredtools',
   },
   {
     element: FAQs,

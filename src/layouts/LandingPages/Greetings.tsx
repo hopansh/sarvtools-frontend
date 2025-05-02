@@ -8,28 +8,25 @@ import { theme } from '@/styles';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const Styled = styled.div`
-  padding-bottom: 180px;
-  @media (max-width: 768px) {
-    padding-bottom: 100px;
-  }
   .hi-container {
-    width: 150px;
-    height: auto;
-    @media (max-width: 768px) {
-      width: 80px;
+    height: fit-content;
+    margin: -2vw 0;
+    img {
+      width: 20vw;
     }
   }
-  .headline{
-    font-size: ${theme.fontSizes.xxxxxLarge};
+  .headline {
+    font-size: ${theme.fontSizes.xxxLarge};
     font-family: ${theme.fonts.headline};
+    font-weight: 700;
     @media (max-width: 768px) {
       font-size: ${theme.fontSizes.xxxxLarge};
     }
   }
-    .sub-headline {
+  .sub-headline {
     font-size: ${theme.fontSizes.large};
     font-weight: 400;
-    // font-family: ${theme.fonts.subHeadline};
+  }
 `;
 const Greetings = () => {
   const navigate = useNavigate();
@@ -45,11 +42,11 @@ const Greetings = () => {
 
   return (
     <Styled className="container">
-      <img src={Logo} alt="logo" className="hi-container levitate" />
-      <div className="headline">{config.headlines.greeting}</div>
-      <div className="sub-headline">
-        {config.subHeadlines.greeting}
+      <div className="hi-container">
+        <img src={Logo} alt="logo" />
       </div>
+      <div className="headline">{config.headlines.greeting}</div>
+      <div className="sub-headline">{config.subHeadlines.greeting}</div>
       <div className="content-container">
         <Button type="default" size="large" onClick={scrollDown}>
           Learn More

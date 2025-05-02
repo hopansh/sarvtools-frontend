@@ -67,26 +67,20 @@ export const globalStyles = css`
     animation: levitate 2s ease-in-out infinite;
   }
 
-  .quiz-container {
-    padding: 12px 0px;
-  }
-
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 24px;
-    padding: 48px;
     width: 100vw;
-    min-height: ${BODY_HEIGHT};
+    padding: 40px;
     @media (max-width: 768px) {
       padding: 12px;
-      min-height: ${MOBILE_BODY_HEIGHT};
     }
   }
 
-  .easeInAnimation {
+  .easeInAnimationDisabled {
     .left-section {
       animation: easeInLeft;
       animation-timeline: view();
@@ -97,10 +91,6 @@ export const globalStyles = css`
       animation-timeline: view();
       animation-range: entry 0 cover 35%;
     }
-  }
-
-  .container-even {
-    background: ${theme.colors.background2};
   }
 
   .content-container {
@@ -123,8 +113,6 @@ export const globalStyles = css`
     width: fit-content;
   }
 
-  // webkit-css
-
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -136,7 +124,7 @@ export const globalStyles = css`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${theme.colors.black};
+    background: ${theme.colors.primary};
     border-radius: ${theme.borders.radius};
     border: 2px solid ${theme.colors.background};
   }

@@ -7,6 +7,7 @@ import { Dropdown, Button, MenuProps } from 'antd';
 import { DownOutlined, MenuOutlined } from '@ant-design/icons';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { getLazyComponentByKey } from '@/utils/getLazyComponentByKey';
+import Branding from '@/components/common/Atoms/Branding';
 
 const Header = styled.header<{ isVisible: boolean }>`
   display: flex;
@@ -20,21 +21,10 @@ const Header = styled.header<{ isVisible: boolean }>`
   z-index: 1;
   top: ${(props) => (props.isVisible ? '0' : `-${HEADER_HEIGHT}`)};
   transition: top 0.3s ease;
-
   @media (max-width: 768px) {
     height: ${MOBILE_HEADER_HEIGHT};
     padding: 0 16px;
   }
-`;
-
-const Branding = styled(Link)`
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: ${theme.colors.primary};
-  text-decoration: none;
-  font-family: ${theme.fonts.headline};
 `;
 
 const NavSection = styled.nav`
@@ -82,12 +72,11 @@ const HeaderSection: React.FC = () => {
   const location = useLocation();
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(
-    location.pathname !== '/' ? true : false,
+    location.pathname !== '/' ? true : true,
   );
   const [lastScrollY, setLastScrollY] = useState(0);
   const config = useSiteConfig();
   const tools = config.tools;
-  const LogoComponent = getLazyComponentByKey(config.logo);
 
   const toolsMenuItems: MenuProps['items'] = tools.map((tool) => ({
     key: tool.id,
@@ -118,13 +107,7 @@ const HeaderSection: React.FC = () => {
 
   return (
     <Header isVisible={isHeaderVisible}>
-      <Branding to="/">
-        <Suspense fallback={<span>Loading...</span>}>
-          {LogoComponent && <LogoComponent width={36} height={36} />}
-        </Suspense>
-        {config.headerTitle}
-      </Branding>
-
+      <Branding />
       <NavSection>
         <NavItem>
           <Dropdown menu={{ items: toolsMenuItems }} placement="bottomCenter">

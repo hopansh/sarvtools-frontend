@@ -52,14 +52,13 @@ const Styled = styled.div`
   }
   .section {
     width: 50%;
-    padding: 48px;
     @media (max-width: 768px) {
       width: 100%;
-      padding: 24px;
     }
   }
   .left-section {
     text-align: center;
+    padding: 0 10vw;
   }
   .right-section {
     gap: 24px;
