@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Input, Button, Space, Typography } from 'antd';
+import React, { useState, useRef } from 'react';
+import { Button, Input, QRCode, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { Title, Paragraph } = Typography;
@@ -18,14 +18,17 @@ const Styled = styled.div`
 
 const QRCodeGenerator = () => {
   const [text, setText] = useState('');
-  const [url, setUrl] = useState('');
+  const qrRef = useRef<HTMLDivElement>(null);
 
-  const handleGenerate = () => {
-    setUrl(
-      `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodeURIComponent(
-        text,
-      )}`,
-    );
+  const handleDownload = () => {
+    if (!qrRef.current) return;
+    const canvas = qrRef.current.querySelector('canvas');
+    if (!canvas) return;
+    const url = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'qr-code.png';
+    link.click();
   };
 
   return (
@@ -36,13 +39,42 @@ const QRCodeGenerator = () => {
           Generate QR codes from any text or URL. Useful for sharing links, contact info, and more.
         </Paragraph>
         <Paragraph type="secondary">
-          <b>Instructions:</b> Enter your text or URL and click <b>Generate</b>. The QR code image will appear below.
+          <b>Instructions:</b> Enter your text or URL and the QR code image will update below.
         </Paragraph>
       </div>
-      <Space direction="vertical" style={{ width: '100%' }} size="middle">
-        <Input value={text} onChange={e => setText(e.target.value)} placeholder="Enter text or URL..." />
-        <Button type="primary" block onClick={handleGenerate}>Generate</Button>
-        {url && <img src={url} alt="QR Code" style={{ marginTop: 12, maxWidth: '100%' }} />}
+      <Space direction="vertical" style={{ width: '100%' }} size="middle" align="center">
+        {text ? (
+          <div ref={qrRef}>
+            <QRCode value={text} />
+          </div>
+        ) : (
+          <div style={{
+            width: 160,
+            height: 160,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '1px dashed #d9d9d9',
+            borderRadius: 8,
+            background: '#fafafa',
+            color: '#bfbfbf',
+            fontSize: 16,
+            marginBottom: 8
+          }}>
+            QR Preview
+          </div>
+        )}
+        {text && (
+          <Button onClick={handleDownload} style={{ marginBottom: 8 }}>
+            Download QR Code
+          </Button>
+        )}
+        <Input
+          value={text}
+          onChange={e => setText(e.target.value)}
+          placeholder="Enter text or URL..."
+          maxLength={60}
+        />
       </Space>
     </Styled>
   );

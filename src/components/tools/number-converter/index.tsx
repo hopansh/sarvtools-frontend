@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Select, Space, Typography } from 'antd';
+import { Button, Input, Select, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
 
 const { Option } = Select;
@@ -61,6 +61,7 @@ const NumberConverter = () => {
             {bases.map(b => <Option key={b.value} value={b.value}>{b.label}</Option>)}
           </Select>
         </Space>
+        <Button onClick={handleConvert}>Convert</Button>
         <Input value={output} readOnly placeholder="Result..." />
       </Space>
     </Styled>

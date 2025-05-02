@@ -6,9 +6,9 @@ import {
   MenuFoldOutlined,
   ToolOutlined,
 } from '@ant-design/icons';
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { toolComponents } from '@/constants/toolMap';
+import { componentRegistry } from '@/constants/componentRegistry';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
 
@@ -94,6 +94,13 @@ function Tools() {
   const defaultToolId = tools[0]?.id || '';
   const [selectedKey, setSelectedKey] = useState(urlToolId || defaultToolId);
 
+  // Open drawer by default on mobile if no tool is selected
+  useEffect(() => {
+    if (isMobile && !urlToolId) {
+      setDrawerOpen(true);
+    }
+  }, [isMobile, urlToolId]);
+
   // Sync selectedKey with URL
   React.useEffect(() => {
     if (urlToolId && urlToolId !== selectedKey) {
@@ -113,7 +120,7 @@ function Tools() {
     // eslint-disable-next-line
   }, [selectedKey]);
 
-  const ToolComponent = selectedKey ? toolComponents[selectedKey] : null;
+  const ToolComponent = selectedKey ? componentRegistry[selectedKey] : null;
 
   const menuItems = tools.map((tool) => ({
     key: tool.id,

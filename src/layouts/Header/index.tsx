@@ -3,10 +3,8 @@ import styled from '@emotion/styled';
 import { theme } from '@/styles';
 import { Link, useLocation } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
-import { Dropdown, Button, MenuProps } from 'antd';
-import { DownOutlined, MenuOutlined } from '@ant-design/icons';
-import { useSiteConfig } from '@/contexts/SiteConfigContext';
-import { getLazyComponentByKey } from '@/utils/getLazyComponentByKey';
+import { Dropdown, Button, MenuProps, Tabs } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import Branding from '@/components/common/Atoms/Branding';
 
 const Header = styled.header<{ isVisible: boolean }>`
@@ -35,10 +33,6 @@ const NavSection = styled.nav`
   @media (max-width: 768px) {
     display: none;
   }
-`;
-
-const NavItem = styled.div`
-  position: relative;
 `;
 
 const NavLink = styled(Link)<{ isActive?: boolean }>`
@@ -75,16 +69,9 @@ const HeaderSection: React.FC = () => {
     location.pathname !== '/' ? true : true,
   );
   const [lastScrollY, setLastScrollY] = useState(0);
-  const config = useSiteConfig();
-  const tools = config.tools;
-
-  const toolsMenuItems: MenuProps['items'] = tools.map((tool) => ({
-    key: tool.id,
-    label: <Link to={`/tools/${tool.id}`}>{tool.name}</Link>,
-  }));
 
   const mobileMenuItems: MenuProps['items'] = [
-    { key: 'tools', label: 'Tools', children: toolsMenuItems },
+    { key: 'tools', label: <Link to="/tools">Tools</Link> },
     { key: 'about', label: <Link to="/about">About</Link> },
   ];
 
@@ -109,19 +96,18 @@ const HeaderSection: React.FC = () => {
     <Header isVisible={isHeaderVisible}>
       <Branding />
       <NavSection>
-        <NavItem>
-          <Dropdown menu={{ items: toolsMenuItems }} placement="bottomCenter">
-            <NavLink
-              to="/tools"
-              isActive={location.pathname.startsWith('/tools')}
-            >
-              Tools <DownOutlined />
-            </NavLink>
-          </Dropdown>
-        </NavItem>
-        <NavLink to="/about" isActive={location.pathname === '/about'}>
-          About
-        </NavLink>
+        <Tabs
+          activeKey={location.pathname.startsWith('/tools') ? 'tools' : location.pathname === '/about' ? 'about' : ''}
+          onChange={key => {
+            if (key === 'tools') window.location.href = '/tools';
+            if (key === 'about') window.location.href = '/about';
+          }}
+          items={[
+            { key: 'tools', label: 'Tools' },
+            { key: 'about', label: 'About' },
+          ]}
+          tabBarStyle={{ borderBottom: 'none', marginBottom: 0 }}
+        />
       </NavSection>
       <Dropdown
         menu={{ items: mobileMenuItems }}

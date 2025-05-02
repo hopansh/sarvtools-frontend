@@ -62,11 +62,6 @@ export const generalTools = [
     description: 'Convert between epoch and human-readable dates',
   },
   {
-    id: 'text-formatter',
-    name: 'Text Formatter',
-    description: 'Format and beautify text, remove extra spaces',
-  },
-  {
     id: 'qr-code-generator',
     name: 'QR Code Generator',
     description: 'Generate QR codes from text or URLs',
