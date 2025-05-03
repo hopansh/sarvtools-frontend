@@ -3,8 +3,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Select } from 'antd';
 
 const languages = [
-  { code: 'en', label: 'English' },
-  { code: 'hi', label: 'हिन्दी' },
+  { code: 'en', label: 'En' },
+  { code: 'hi', label: 'Hi' },
 ];
 
 const LanguageSwitcher: React.FC = () => {

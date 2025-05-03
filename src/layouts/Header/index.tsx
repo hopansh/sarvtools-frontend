@@ -63,7 +63,7 @@ const MobileMenuButton = styled(Button)`
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: 40px;
+    height: 32px;
     padding: 0;
   }
 `;
