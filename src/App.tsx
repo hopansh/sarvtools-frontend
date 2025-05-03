@@ -1,5 +1,4 @@
 import { Global } from '@emotion/react';
-import { globalStyles } from '@/styles/globalStyles';
 import About from './pages/About';
 import HeaderSection from '@/layouts/Header';
 import FooterSection from '@/layouts/Footer';
@@ -11,7 +10,11 @@ import Home from './pages/Home';
 import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/DataPrivacy';
 import Tools from './pages/Tools';
-import { SiteConfigProvider, useSiteConfig } from '@/contexts/SiteConfigContext';
+import {
+  SiteConfigProvider,
+  useSiteConfig,
+} from '@/contexts/SiteConfigContext';
+import { useGlobalStyles } from '@/styles/globalStyles';
 
 const Styled = styled.div`
   width: 100vw;
@@ -25,10 +28,11 @@ const Styled = styled.div`
   }
 `;
 
-function AppContent() {
-  const tools = useSiteConfig().tools;
+const AppContent = () => {
+  const { tools } = useSiteConfig();
   const location = useLocation();
-  const isToolsPage = location.pathname === '/tools' || location.pathname.startsWith('/tools/');
+  const isToolsPage =
+    location.pathname === '/tools' || location.pathname.startsWith('/tools/');
 
   return (
     <Styled>
@@ -40,7 +44,7 @@ function AppContent() {
           <Route path="/contact" element={<About />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          {tools.map((tool) => (
+          {tools.map((tool: { id: string }) => (
             <Route
               key={tool.id}
               path={`/tools/${tool.id}`}
@@ -53,9 +57,10 @@ function AppContent() {
       {!isToolsPage && <FooterSection />}
     </Styled>
   );
-}
+};
 
 function App() {
+  const globalStyles = useGlobalStyles();
   return (
     <SiteConfigProvider>
       <Wrapper>

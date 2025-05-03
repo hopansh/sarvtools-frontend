@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Input, Select, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Option } = Select;
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -30,6 +31,8 @@ const NumberConverter = () => {
   const [toBase, setToBase] = useState(2);
   const [output, setOutput] = useState('');
 
+  const { theme } = useThemeMode();
+
   const handleConvert = () => {
     try {
       const num = parseInt(input, fromBase);
@@ -40,7 +43,7 @@ const NumberConverter = () => {
   };
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="instructions">
         <Title level={3}>Number Converter</Title>
         <Paragraph>

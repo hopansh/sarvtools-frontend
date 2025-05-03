@@ -50,10 +50,10 @@ const Greetings = () => {
       <div className="sub-headline">{config.subHeadlines.greeting}</div>
       <div className="content-container">
         <Button type="default" size="large" onClick={scrollDown}>
-          Learn More
+          {config.buttons.learnMore}
         </Button>
         <Button type="primary" onClick={getStarted} size="large">
-          Get Started
+          {config.buttons.getStarted}
         </Button>
       </div>
     </Styled>

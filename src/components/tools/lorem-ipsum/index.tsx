@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { InputNumber, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -21,13 +22,14 @@ const LOREM = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euis
 const LoremIpsum = () => {
   const [count, setCount] = useState(1);
   const [output, setOutput] = useState('');
+  const { theme } = useThemeMode();
 
   const handleGenerate = () => {
     setOutput(Array(count).fill(LOREM).join('\n\n'));
   };
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="instructions">
         <Title level={3}>Lorem Ipsum Generator</Title>
         <Paragraph>

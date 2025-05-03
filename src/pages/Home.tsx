@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import Greetings from '@/layouts/LandingPages/Greetings';
 import FAQs from '@/layouts/LandingPages/FAQs';
 import FeedbackForm from '@/layouts/LandingPages/Feedback';
 import { useLocation } from 'react-router-dom';
-import { theme } from '@/styles';
 import FeaturedTools from '@/layouts/LandingPages/FeaturedTools';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   .headline {
     text-align: center;
     font-size: 48px;
-    color: ${theme.colors.primary};
+    color: ${(props) => props.theme.colors.primary};
     @media (max-width: 768px) {
       font-size: 36px;
     }
@@ -19,6 +19,7 @@ const Styled = styled.div`
   .sub-headline {
     text-align: center;
     font-size: 24px;
+    color: ${(props) => props.theme.colors.text};
     @media (max-width: 768px) {
       font-size: 18px;
     }
@@ -26,6 +27,7 @@ const Styled = styled.div`
   .caption {
     font-size: 14px;
     font-weight: 400;
+    color: ${(props) => props.theme.colors.subtext};
     @media (max-width: 768px) {
       font-size: 12px;
     }
@@ -56,6 +58,7 @@ const components = [
 
 const Home = () => {
   const location = useLocation();
+  const { theme } = useThemeMode();
 
   useEffect(() => {
     if (location.hash) {
@@ -67,7 +70,7 @@ const Home = () => {
   }, [location]);
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       {components.map((Component, index) => (
         <div
           className={`container ${index % 2 ? 'container-even' : ''}`}

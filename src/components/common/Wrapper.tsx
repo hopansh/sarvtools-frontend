@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import { ConfigProvider, theme, ThemeConfig } from 'antd';
 import { theme as localTheme } from '@/styles';
 import store from '@/store/store';
-import ErrorBoundary from './ErrorBoundary';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
+  const { mode } = useThemeMode();
+  const isDark = mode === 'dark';
   const antdTheme: ThemeConfig = {
     token: {
       colorPrimary: localTheme.colors.secondary,
@@ -14,13 +16,13 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
       fontFamily: localTheme.fonts.primary,
       borderRadius: 0,
     },
-    algorithm: theme.defaultAlgorithm,
+    algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
   };
   return (
     <Router>
       <Provider store={store}>
         <ConfigProvider theme={antdTheme}>
-          <ErrorBoundary>{children}</ErrorBoundary>
+          {children}
         </ConfigProvider>
       </Provider>
     </Router>

@@ -9,14 +9,15 @@ import {
   ContactsOutlined,
 } from '@ant-design/icons';
 import styled from '@emotion/styled';
-import { PROJECT_NAME } from '@/constants/common';
 import Logo from '@/assets/mobile.png';
 import AboutUs from '@/assets/aboutUs3D.png';
 import FloatingObjectsBackground from '@/components/common/Atoms/FloatingContent';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   .about-main,
   .contact-us-container {
     display: flex;
@@ -38,87 +39,67 @@ const Styled = styled.div`
 `;
 
 const About: React.FC = () => {
+  const { content } = useSiteConfig();
+  const { theme } = useThemeMode();
+  const aboutContent = content.about;
+
   return (
-    <Styled className="container">
+    <Styled theme={theme} className="container">
       <FloatingObjectsBackground />
-      <Card style={{ margin: '20px', background: 'transparent' }}>
-        <Title level={2}>About {PROJECT_NAME}</Title>
-        <Divider />
+      <Card style={{ margin: '20px', background: 'transparent', color: theme.colors.text }}>
+        <Title level={2} style={{ color: theme.colors.primary }}>{content.aboutHeadline}</Title>
+        <Divider style={{ borderColor: theme.colors.secondary }} />
         <Space direction="vertical" size="large" style={{ display: 'flex' }}>
           <div className="about-main">
             <img src={AboutUs} alt="logo" className="about-logo" />
-            <Paragraph>
-              Welcome to <strong>SarvTools.in</strong>, a zero-server, privacy-focused toolbox designed to empower developers, students, and professionals with a wide range of utilities. With over 50+ tools across various categories, SarvTools.in ensures 100% client-side processing, keeping your data private and secure.
-            </Paragraph>
+            <Paragraph style={{ color: theme.colors.text }}>{aboutContent.description}</Paragraph>
           </div>
-          <Title level={3}>
+          <Title level={3} style={{ color: theme.colors.primary }}>
             <InfoCircleOutlined /> Key Features
           </Title>
-          <Paragraph>
+          <Paragraph style={{ color: theme.colors.text }}>
             <ul>
-              <li>
-                <strong>Privacy-Focused:</strong> All tools run entirely on your browser, ensuring no data leaves your device.
-              </li>
-              <li>
-                <strong>Developer Tools:</strong> JSON Formatter, Regex Tester, Base64 Converter, and more to enhance productivity.
-              </li>
-              <li>
-                <strong>Utility Tools:</strong> Color Converter, Timestamp Converter, Lorem Ipsum Generator, and others for everyday tasks.
-              </li>
-              <li>
-                <strong>Open Source:</strong> Contribute to the project and add your own tools to the platform.
-              </li>
-              <li>
-                <strong>User-Friendly Interface:</strong> Navigate through tools effortlessly with a clean and intuitive design.
-              </li>
+              {aboutContent.features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
             </ul>
           </Paragraph>
-          <Title level={3}>
+          <Title level={3} style={{ color: theme.colors.primary }}>
             <SettingOutlined /> Why SarvTools.in?
           </Title>
-          <Paragraph>
-            SarvTools.in is your go-to solution for quick, reliable, and secure tools. Whether you're a developer debugging code, a student working on assignments, or a professional managing tasks, SarvTools.in provides a comprehensive suite of tools to simplify your workflow.
-          </Paragraph>
-          <Title level={3}>
+          <Paragraph style={{ color: theme.colors.text }}>{aboutContent.whySarvTools}</Paragraph>
+          <Title level={3} style={{ color: theme.colors.primary }}>
             <GlobalOutlined /> Getting Started
           </Title>
-          <Paragraph>
+          <Paragraph style={{ color: theme.colors.text }}>
             <ol>
-              <li>
-                <strong>Explore Tools:</strong> Browse through our extensive collection of tools across categories.
-              </li>
-              <li>
-                <strong>Use Instantly:</strong> No sign-ups or installations required. Just open a tool and start using it.
-              </li>
-              <li>
-                <strong>Contribute:</strong> Add new tools or improve existing ones by contributing to our open-source repository.
-              </li>
+              {aboutContent.gettingStarted.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
             </ol>
           </Paragraph>
         </Space>
-        <Divider />
-        <Title level={2}>
+        <Divider style={{ borderColor: theme.colors.secondary }} />
+        <Title level={2} style={{ color: theme.colors.primary }}>
           <ContactsOutlined /> Contact Us
         </Title>
-        <Divider />
+        <Divider style={{ borderColor: theme.colors.secondary }} />
         <div className="contact-us-container">
           <Space direction="vertical" size="small" style={{ display: 'flex' }}>
-            <Paragraph>
-              We'd love to hear from you! If you have any questions, suggestions, or need support, feel free to reach out to us through the following channels:
+            <Paragraph style={{ color: theme.colors.text }}>
+              We&apos;d love to hear from you! If you have any questions, suggestions, or need support, feel free to reach out to us through the following channels:
             </Paragraph>
-            <Title level={3}>
+            <Title level={3} style={{ color: theme.colors.primary }}>
               <MailOutlined /> Email
             </Title>
-            <Paragraph>
-              <a href="mailto:hopanshgahlot@gmail.com">
-                hopanshgahlot@gmail.com
-              </a>
+            <Paragraph style={{ color: theme.colors.text }}>
+              <a href={`mailto:${aboutContent.contact.email}`}>{aboutContent.contact.email}</a>
             </Paragraph>
-            <Title level={3}>
+            <Title level={3} style={{ color: theme.colors.primary }}>
               <InstagramOutlined /> Instagram
             </Title>
-            <Paragraph>
-              <a href="https://instagram.com/sarvtools" target="_blank" rel="noopener noreferrer">
+            <Paragraph style={{ color: theme.colors.text }}>
+              <a href={aboutContent.contact.instagram} target="_blank" rel="noopener noreferrer">
                 @sarvtools
               </a>
             </Paragraph>

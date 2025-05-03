@@ -1,12 +1,18 @@
 import React, { createContext, useContext } from 'react';
-import { SiteConfig, siteConfigs } from '@/config/siteConfigs';
+import { siteConfigs } from '@/config/siteConfigs';
 import { getSubdomain } from '@/utils/getSubdomain';
+import { merge } from 'lodash';
+import { useLanguage } from './LanguageContext';
+
+type SiteConfig = typeof siteConfigs.default;
 
 const SiteConfigContext = createContext<SiteConfig>(siteConfigs.default);
 
 export const SiteConfigProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const subdomain = getSubdomain();
-  const config = siteConfigs[subdomain] || siteConfigs.default;
+  const { language } = useLanguage();
+  const langKey = language === 'hi' ? 'hi' : 'default';
+  const config = merge({}, siteConfigs.default, siteConfigs[langKey as keyof typeof siteConfigs]);
   return (
     <SiteConfigContext.Provider value={config}>
       {children}

@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import MiniCard from '@/components/common/Atoms/MiniCard';
 import { Row, Col, Typography } from 'antd';
-import { theme } from '@/styles';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title } = Typography;
 
-const Section = styled.section`
+const Section = styled.section<{ theme: any }>`
   width: 100%;
   max-width: 1600px;
   @media (max-width: 900px) {
@@ -16,9 +16,9 @@ const Section = styled.section`
   }
   margin: 0 auto;
   padding: 48px 16px 32px 16px;
-  background: ${theme.colors.background2};
-  border-radius: ${theme.borders.radius};
-  box-shadow: ${theme.shadows.medium};
+  background: ${(props) => props.theme.colors.background2};
+  border-radius: ${(props) => props.theme.borders.radius};
+  box-shadow: ${(props) => props.theme.shadows.medium};
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -27,7 +27,7 @@ const Section = styled.section`
     flex-direction: column;
     gap: 24px;
     padding: 24px 4px;
-    border-radius: ${theme.borders.sRadius};
+    border-radius: ${(props) => props.theme.borders.sRadius};
   }
 `;
 
@@ -63,19 +63,20 @@ const CardsGrid = styled(Row)`
 `;
 
 const FeaturedTools: React.FC = () => {
-  const config = useSiteConfig();
-  const { tools } = config;
+  const { tools, headlines } = useSiteConfig();
+  const { theme } = useThemeMode();
+
   return (
-    <Section className="container">
+    <Section theme={theme} className="container">
       <Left>
         <Title
           level={2}
           style={{ textAlign: 'left', color: theme.colors.primary }}
         >
-          {config.headlines.modernTool}
+          {headlines.modernTool}
         </Title>
         <CardsGrid gutter={[12, 12]}>
-          {tools.map((tool) => (
+          {tools.map((tool: { id: string; name: string; description: string }) => (
             <Col
               key={tool.id}
               xs={12}

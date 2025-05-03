@@ -3,17 +3,19 @@ import styled from '@emotion/styled';
 import { theme } from '@/styles';
 import { Link, useLocation } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
-import { Dropdown, Button, MenuProps, Tabs } from 'antd';
+import { Dropdown, Button, MenuProps } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import Branding from '@/components/common/Atoms/Branding';
+import LanguageSwitcher from '@/components/common/Atoms/LanguageSwitcher';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
-const Header = styled.header<{ isVisible: boolean }>`
+const Header = styled.header<{ theme: any; isVisible: boolean }>`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
   height: ${HEADER_HEIGHT};
-  background: ${theme.colors.white};
+  background: ${(props) => props.theme.colors.white};
   position: fixed;
   padding: 0 48px;
   z-index: 1;
@@ -35,18 +37,22 @@ const NavSection = styled.nav`
   }
 `;
 
-const NavLink = styled(Link)<{ isActive?: boolean }>`
+const CustomNavLink = styled(Link)<{ isActive?: boolean; theme: any }>`
   color: ${(props) =>
-    props.isActive ? theme.colors.secondary : theme.colors.primary};
+    props.isActive ? props.theme.colors.secondary : props.theme.colors.primary};
   font-size: 16px;
-  font-weight: 500;
   text-decoration: none;
   padding: 8px 12px;
-  border-radius: 4px;
+  border-bottom: 2px solid
+    ${(props) =>
+      props.isActive ? props.theme.colors.secondary : 'transparent'};
   transition: all 0.3s ease;
+  position: relative;
 
   &:hover {
-    color: ${theme.colors.primary};
+    color: ${(props) => props.theme.colors.accent};
+    border-bottom: 2px solid ${(props) => props.theme.colors.accent};
+    text-decoration: none;
   }
 `;
 
@@ -64,10 +70,9 @@ const MobileMenuButton = styled(Button)`
 
 const HeaderSection: React.FC = () => {
   const location = useLocation();
+  const { mode, toggleTheme, theme } = useThemeMode();
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(
-    location.pathname !== '/' ? true : true,
-  );
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const mobileMenuItems: MenuProps['items'] = [
@@ -77,49 +82,61 @@ const HeaderSection: React.FC = () => {
 
   useEffect(() => {
     if (isHeaderVisible) return;
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY) {
-        setIsHeaderVisible(true); // Hide header on scroll down
+        setIsHeaderVisible(true);
       }
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, isHeaderVisible]);
 
   return (
-    <Header isVisible={isHeaderVisible}>
+    <Header theme={theme} isVisible={isHeaderVisible}>
       <Branding />
       <NavSection>
-        <Tabs
-          activeKey={location.pathname.startsWith('/tools') ? 'tools' : location.pathname === '/about' ? 'about' : ''}
-          onChange={key => {
-            if (key === 'tools') window.location.href = '/tools';
-            if (key === 'about') window.location.href = '/about';
-          }}
-          items={[
-            { key: 'tools', label: 'Tools' },
-            { key: 'about', label: 'About' },
-          ]}
-          tabBarStyle={{ borderBottom: 'none', marginBottom: 0 }}
-        />
+        <CustomNavLink
+          theme={theme}
+          to="/tools"
+          isActive={location.pathname.startsWith('/tools')}
+        >
+          Tools
+        </CustomNavLink>
+        <CustomNavLink
+          theme={theme}
+          to="/about"
+          isActive={location.pathname === '/about'}
+        >
+          About
+        </CustomNavLink>
       </NavSection>
-      <Dropdown
-        menu={{ items: mobileMenuItems }}
-        visible={mobileMenuVisible}
-        onVisibleChange={setMobileMenuVisible}
-        trigger={['click']}
-      >
-        <MobileMenuButton
-          icon={<MenuOutlined />}
-          onClick={() => setMobileMenuVisible(!mobileMenuVisible)}
-        />
-      </Dropdown>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <LanguageSwitcher />
+        <Button
+          aria-label="Toggle dark mode"
+          onClick={toggleTheme}
+          title={
+            mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+          }
+        >
+          {mode === 'dark' ? '🌙' : '☀️'}
+        </Button>
+        <Dropdown
+          menu={{ items: mobileMenuItems }}
+          open={mobileMenuVisible}
+          onOpenChange={setMobileMenuVisible}
+          trigger={['click']}
+        >
+          <MobileMenuButton
+            icon={<MenuOutlined />}
+            onClick={() => setMobileMenuVisible(!mobileMenuVisible)}
+          />
+        </Dropdown>
+      </div>
     </Header>
   );
 };

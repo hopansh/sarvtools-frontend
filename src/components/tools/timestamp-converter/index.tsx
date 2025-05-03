@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Input, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -19,6 +20,7 @@ const Styled = styled.div`
 const TimestampConverter = () => {
   const [epoch, setEpoch] = useState('');
   const [date, setDate] = useState('');
+  const { theme } = useThemeMode();
 
   const handleEpochToDate = () => {
     const ms = parseInt(epoch, 10);
@@ -32,8 +34,8 @@ const TimestampConverter = () => {
   };
 
   return (
-    <Styled>
-      <Card>
+    <Styled theme={theme}>
+      <Card style={{ background: theme.colors.white, color: theme.colors.text }}>
         <div className="instructions">
           <Title level={3}>Timestamp Converter</Title>
           <Paragraph>

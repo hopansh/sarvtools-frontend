@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Button, Input, QRCode, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -19,6 +20,7 @@ const Styled = styled.div`
 const QRCodeGenerator = () => {
   const [text, setText] = useState('');
   const qrRef = useRef<HTMLDivElement>(null);
+  const { theme } = useThemeMode();
 
   const handleDownload = () => {
     if (!qrRef.current) return;
@@ -32,7 +34,7 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="instructions">
         <Title level={3}>QR Code Generator</Title>
         <Paragraph>

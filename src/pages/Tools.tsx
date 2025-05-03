@@ -122,7 +122,7 @@ function Tools() {
 
   const ToolComponent = selectedKey ? componentRegistry[selectedKey] : null;
 
-  const menuItems = tools.map((tool) => ({
+  const menuItems = tools.map((tool: { id: string; name: string }) => ({
     key: tool.id,
     icon: <ToolOutlined />,
     label: tool.name,

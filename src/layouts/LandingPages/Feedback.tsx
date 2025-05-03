@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import styled from '@emotion/styled';
 import Logo from '@/assets/feedback.png';
-import { theme } from '@/styles';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { TextArea } = Input;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   text-align: left;
   flex-direction: row;
   justify-content: center;
@@ -21,9 +22,9 @@ const Styled = styled.div`
     }
   }
   .right-section {
-    background: ${theme.colors.background2};
-    border-radius: ${theme.borders.radius};
-    box-shadow: ${theme.shadows.medium};
+    background: ${(props) => props.theme.colors.background2};
+    border-radius: ${(props) => props.theme.borders.radius};
+    box-shadow: ${(props) => props.theme.shadows.medium};
     padding: 24px;
     @media (max-width: 768px) {
       padding: 16px 24px;
@@ -58,56 +59,57 @@ const Styled = styled.div`
 `;
 
 const FeedbackForm: React.FC = () => {
+  const content = useSiteConfig();
+  const { theme } = useThemeMode();
+
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values: any) => {
     setLoading(true);
     try {
-      message.success('Thank you for your feedback!');
+      message.success(content.content.feedbackSuccessMessage);
     } catch (error) {
-      message.error(
-        'There was an error submitting your feedback. Please try again.',
-      );
+      message.error(content.content.feedbackErrorMessage);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Styled className="container">
+    <Styled theme={theme} className="container">
       <div className="right-section">
-        <div className="headline">Feedback Form</div>
-        <Form layout="vertical" onFinish={onFinish}>
+        <div className="headline">{content.content.feedbackHeadline}</div>
+        <Form layout="vertical" onFinish={onFinish} style={{ color: theme.colors.text }}>
           <Form.Item
-            label="Name"
+            label={content.content.feedbackNameLabel}
             name="name"
-            rules={[{ required: true, message: 'Please enter your name' }]}
+            rules={[{ required: true, message: content.content.feedbackNameRequired }]}
           >
-            <Input placeholder="Your Name" />
+            <Input placeholder={content.content.feedbackNamePlaceholder} />
           </Form.Item>
           <Form.Item
-            label="Email"
+            label={content.content.feedbackEmailLabel}
             name="email"
             rules={[
               {
                 required: true,
                 type: 'email',
-                message: 'Please enter a valid email',
+                message: content.content.feedbackEmailRequired,
               },
             ]}
           >
-            <Input placeholder="Your Email" />
+            <Input placeholder={content.content.feedbackEmailPlaceholder} />
           </Form.Item>
           <Form.Item
-            label="Feedback"
+            label={content.content.feedbackLabel}
             name="feedback"
-            rules={[{ required: true, message: 'Please enter your feedback' }]}
+            rules={[{ required: true, message: content.content.feedbackRequired }]}
           >
-            <TextArea rows={4} placeholder="Your Feedback" />
+            <TextArea rows={4} placeholder={content.content.feedbackPlaceholder} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading}>
-              Submit
+              {content.buttons.submit}
             </Button>
           </Form.Item>
         </Form>

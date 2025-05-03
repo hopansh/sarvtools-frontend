@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input, Button, Space, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -47,12 +48,13 @@ function rgbToHex(rgb: string) {
 const ColorConverter = () => {
   const [hex, setHex] = useState('');
   const [rgb, setRgb] = useState('');
+  const { theme } = useThemeMode();
 
   const handleHexToRgb = () => setRgb(hexToRgb(hex));
   const handleRgbToHex = () => setHex(rgbToHex(rgb));
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="instructions">
         <Title level={3}>Color Converter</Title>
         <Paragraph>

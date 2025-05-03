@@ -1,18 +1,19 @@
 import { theme } from '@/styles';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 export type MiniCardProps = {
   title: string;
   description: string;
 };
-const Styled = styled.div`
-  background: ${theme.colors.white};
+const Styled = styled.div<{ theme: any }>`
+  background: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
   width: 300px;
   flex-grow: 1;
   padding: 12px;
-  box-shadow: ${theme.shadows.small};
+  box-shadow: ${(props) => props.theme.shadows.small};
   transition: all 0.3s ease;
   text-align: left;
   cursor: pointer;
@@ -20,7 +21,7 @@ const Styled = styled.div`
   overflow: hidden;
 
   &:hover {
-    box-shadow: ${theme.shadows.large};
+    box-shadow: ${(props) => props.theme.shadows.large};
     transform: translateY(-5px);
   }
 
@@ -31,7 +32,7 @@ const Styled = styled.div`
     left: 0;
     width: 100%;
     height: 4px;
-    background: ${theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -49,9 +50,9 @@ const Styled = styled.div`
   }
 
   .title {
-    font-size: ${theme.fontSizes.small};
+    font-size: ${(props) => props.theme.fontSizes.small};
     font-weight: 600;
-    color: ${theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
     display: flex;
     align-items: flex-start;
     @media (max-width: 768px) {
@@ -62,7 +63,7 @@ const Styled = styled.div`
   .description {
     font-size: 14px;
     font-weight: 400;
-    color: ${theme.colors.subtext};
+    color: ${(props) => props.theme.colors.subtext};
     line-height: 1.4;
     @media (max-width: 768px) {
       font-size: 11px;
@@ -72,8 +73,9 @@ const Styled = styled.div`
 
 const MiniCard = (props: MiniCardProps) => {
   const { title, description } = props;
+  const { theme } = useThemeMode();
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="title">
         {title}
       </div>

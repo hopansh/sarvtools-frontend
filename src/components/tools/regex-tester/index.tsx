@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Input, Button, Space, Alert, Typography } from 'antd';
 import styled from '@emotion/styled';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { TextArea } = Input;
 const { Title, Paragraph } = Typography;
 
-const Styled = styled.div`
+const Styled = styled.div<{ theme: any }>`
   max-width: 500px;
   margin: 0 auto;
   padding: 24px 12px;
@@ -21,6 +22,7 @@ const RegexTester = () => {
   const [pattern, setPattern] = useState('');
   const [text, setText] = useState('');
   const [result, setResult] = useState<string | null>(null);
+  const { theme } = useThemeMode();
 
   const handleTest = () => {
     try {
@@ -33,7 +35,7 @@ const RegexTester = () => {
   };
 
   return (
-    <Styled>
+    <Styled theme={theme}>
       <div className="instructions">
         <Title level={3}>Regex Tester</Title>
         <Paragraph>
