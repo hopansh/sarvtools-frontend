@@ -11,7 +11,7 @@ const SiteConfigContext = createContext<SiteConfig>(siteConfigs.default);
 export const SiteConfigProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const subdomain = getSubdomain();
   const { language } = useLanguage();
-  const langKey = language === 'hi' ? 'hi' : 'default';
+  const langKey = language === 'hi' ? `${subdomain}_hi` : subdomain;
   const config = merge({}, siteConfigs.default, siteConfigs[langKey as keyof typeof siteConfigs]);
   return (
     <SiteConfigContext.Provider value={config}>
