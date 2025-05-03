@@ -53,7 +53,6 @@ export const devTools = [
   },
 ];
 
-export const shadiTools = [];
 
 export const generalTools = [
   {
@@ -68,4 +67,9 @@ export const generalTools = [
   },
 ];
 
-export const tools = [...devTools, ...shadiTools, ...generalTools];
+export const tools = [...devTools, ...generalTools];
+
+export const toolsConfigMap = {
+  dev: devTools,
+  default: tools,
+};

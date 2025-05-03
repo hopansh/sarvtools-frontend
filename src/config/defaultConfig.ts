@@ -1,5 +1,3 @@
-import { tools } from "@/constants/tools";
-
 export const defaultConfig = {
     logo: 'defaultLogo',
     headerTitle: 'SarvTools',
@@ -14,7 +12,6 @@ export const defaultConfig = {
       modernTool:
         'Explore wide range of tools for code, text, color, data, and more. 100% client-side. No sign-up. No data leaves your device.',
     },
-    tools,
     content: {
       faqs: [
         {
