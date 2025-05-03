@@ -49,7 +49,7 @@ const FooterLink = styled(Link)<{ theme: any }>`
 `;
 
 const SocialIcon = styled.a<{ theme: any }>`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.accent};
   font-size: 24px;
   margin-right: 8px;
   transition: color 0.3s ease;

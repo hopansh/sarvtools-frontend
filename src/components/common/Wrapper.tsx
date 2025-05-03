@@ -16,6 +16,11 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
       fontFamily: localTheme.fonts.primary,
       borderRadius: 0,
     },
+    components:{
+      Button:{
+        colorPrimary: localTheme.colors.accent,
+      }
+    },
     algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
   };
   return (

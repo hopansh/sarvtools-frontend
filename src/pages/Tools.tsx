@@ -11,46 +11,58 @@ import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { componentRegistry } from '@/constants/componentRegistry';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '@/constants/styles';
+import { useThemeMode } from '@/contexts/ThemeContext';
 
 const { Sider, Content } = Layout;
 const { useBreakpoint } = Grid;
 
-const StyledLayout = styled(Layout)`
+const StyledLayout = styled(Layout)<{ theme: any }>`
   height: calc(100vh - ${HEADER_HEIGHT});
   @media (max-width: 768px) {
     height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
   }
   overflow: hidden;
-  background: ${theme.colors.background2};
+  background: ${(props) => props.theme.colors.background2};
 `;
 
-const StyledSider = styled(Sider)`
-  background: ${theme.colors.background2} !important;
+const StyledSider = styled(Sider)<{ themes: any }>`
+  background: ${(props) => props.themes.colors.background2} !important;
   height: 100%;
-  border-right: 1px solid ${theme.colors.background};
+  border-right: 1px solid ${(props) => props.themes.colors.border || props.themes.colors.background};
   .ant-menu {
-    background: transparent !important;
+    background: ${(props) => props.themes.colors.background2} !important;
+    color: ${(props) => props.themes.colors.text} !important;
     overflow: auto;
     padding-bottom: 80px;
     @media (max-width: 768px) {
       padding-bottom: 40px;
     }
   }
+  .ant-menu-item {
+    color: ${(props) => props.themes.colors.text} !important;
+    &:hover, &.ant-menu-item-selected {
+      background: ${(props) => props.themes.colors.secondary} !important;
+      color: ${(props) => props.themes.colors.primary} !important;
+    }
+  }
   .ant-layout-sider-trigger {
-    background: ${theme.colors.secondary} !important;
+    background: ${(props) => props.themes.colors.accent} !important;
+    color: ${(props) => props.themes.colors.text} !important;
   }
 `;
 
-const SiderHeader = styled.div`
+const SiderHeader = styled.div<{ theme: any }>`
   padding: 16px;
   text-align: center;
   font-weight: 700;
-  color: ${theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   font-size: 20px;
+  background: ${(props) => props.theme.colors.background2};
 `;
 
-const StyledContent = styled(Content)`
-  background: ${theme.colors.background};
+const StyledContent = styled(Content)<{ theme: any }>`
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
   padding: 32px;
   min-height: 400px;
   display: flex;
@@ -62,11 +74,12 @@ const StyledContent = styled(Content)`
   }
 `;
 
-const ToolCard = styled.div`
+const ToolCard = styled.div<{ theme: any }>`
   width: 100%;
-  background: ${theme.colors.white};
-  border-radius: ${theme.borders.radius};
-  box-shadow: ${theme.shadows.small};
+  background: ${(props) => props.theme.colors.white || props.theme.colors.background2};
+  color: ${(props) => props.theme.colors.text};
+  border-radius: ${(props) => props.theme.borders.radius};
+  box-shadow: ${(props) => props.theme.shadows.small};
   padding: 32px;
   min-height: 70vh;
   max-height: 100%;
@@ -83,6 +96,7 @@ function Tools() {
   const { tools } = useSiteConfig();
   const location = useLocation();
   const navigate = useNavigate();
+  const { theme } = useThemeMode();
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const screens = useBreakpoint();
@@ -134,7 +148,7 @@ function Tools() {
   };
 
   return (
-    <StyledLayout>
+    <StyledLayout theme={theme}>
       {isMobile ? (
         <>
           <Button
@@ -148,46 +162,50 @@ function Tools() {
               bottom: 24,
               right: 24,
               zIndex: 999,
-              boxShadow: '0 4px 16px rgba(0,0,0,0.18)'
+              boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
+              background: theme.colors.secondary,
+              color: theme.colors.text,
             }}
             aria-label="Open tools menu"
           />
           <Drawer
-            title="All Tools"
+            title={<span style={{color: theme.colors.primary}}>All Tools</span>}
             placement="left"
             onClose={() => setDrawerOpen(false)}
             open={drawerOpen}
-            bodyStyle={{ padding: 0 }}
+            bodyStyle={{ padding: 0, background: theme.colors.background2, color: theme.colors.text }}
             width={220}
+            headerStyle={{ background: theme.colors.background2, color: theme.colors.primary }}
+            style={{ background: theme.colors.background2 }}
           >
             <Menu
               mode="inline"
               selectedKeys={[selectedKey]}
               items={menuItems}
               onClick={handleMenuClick}
-              style={{ height: '100%', borderRight: 0 }}
+              style={{ height: '100%', borderRight: 0, background: theme.colors.background2, color: theme.colors.text }}
             />
           </Drawer>
         </>
       ) : (
-        <StyledSider
+        <StyledSider themes={theme}
           collapsible
           collapsed={collapsed}
           onCollapse={setCollapsed}
           width={220}
         >
-          <SiderHeader>{collapsed ? <ToolOutlined /> : 'Tools'}</SiderHeader>
+          <SiderHeader theme={theme}>{collapsed ? <ToolOutlined /> : 'Tools'}</SiderHeader>
           <Menu
             mode="inline"
             selectedKeys={[selectedKey]}
             items={menuItems}
             onClick={handleMenuClick}
-            style={{ height: '100%', borderRight: 0 }}
+            style={{ height: '100%', borderRight: 0, background: theme.colors.background2, color: theme.colors.text }}
           />
         </StyledSider>
       )}
-      <StyledContent>
-        <ToolCard>
+      <StyledContent theme={theme}>
+        <ToolCard theme={theme}>
           <Suspense
             fallback={
               <div style={{ padding: 32, textAlign: 'center' }}>

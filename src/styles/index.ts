@@ -73,6 +73,7 @@ export const lightTheme = {
     background2: '#FAFAFBFF',
     text: '#171A1FFF',
     subtext: '#9095A0FF',
+    border: '#E1E1E6FF',
   },
 };
 
@@ -91,6 +92,7 @@ export const darkTheme = {
     background2: '#23262F',
     text: '#F1F1F1',
     subtext: '#A3A3A3',
+    border: '#E1E1E6',
   },
 };
 

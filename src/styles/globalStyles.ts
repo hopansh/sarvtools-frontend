@@ -24,6 +24,9 @@ export function useGlobalStyles() {
         text-decoration: none;
         color: unset;
         transition: all 0.3s ease-in-out;
+        :hover {
+          color: ${theme.colors.accent};
+        }
       }
       * {
         margin: 0;

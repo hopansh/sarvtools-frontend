@@ -32,7 +32,7 @@ const Styled = styled.div<{ theme: any }>`
     left: 0;
     width: 100%;
     height: 4px;
-    background: ${(props) => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.accent};
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;

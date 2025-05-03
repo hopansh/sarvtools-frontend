@@ -39,19 +39,19 @@ const NavSection = styled.nav`
 
 const CustomNavLink = styled(Link)<{ isActive?: boolean; theme: any }>`
   color: ${(props) =>
-    props.isActive ? props.theme.colors.secondary : props.theme.colors.primary};
+    props.isActive ? props.theme.colors.accent : props.theme.colors.primary};
   font-size: 16px;
   text-decoration: none;
   padding: 8px 12px;
   border-bottom: 2px solid
     ${(props) =>
-      props.isActive ? props.theme.colors.secondary : 'transparent'};
+      props.isActive ? props.theme.colors.accent : 'transparent'};
   transition: all 0.3s ease;
   position: relative;
 
   &:hover {
-    color: ${(props) => props.theme.colors.accent};
-    border-bottom: 2px solid ${(props) => props.theme.colors.accent};
+    color: ${(props) => props.theme.colors.secondary};
+    border-bottom: 2px solid ${(props) => props.theme.colors.secondary};
     text-decoration: none;
   }
 `;
