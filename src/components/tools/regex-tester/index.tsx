@@ -34,6 +34,13 @@ const RegexTester = () => {
     }
   };
 
+  // Sample values
+  const handleSample = () => {
+    setPattern('\\b\\w{4}\\b');
+    setText('This line has four word and test case.');
+    setResult(null);
+  };
+
   return (
     <Styled theme={theme}>
       <div className="instructions">
@@ -46,6 +53,7 @@ const RegexTester = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <Input value={pattern} onChange={e => setPattern(e.target.value)} placeholder="Regex pattern..." />
         <TextArea rows={4} value={text} onChange={e => setText(e.target.value)} placeholder="Test text..." />
         <Button type="primary" block onClick={handleTest}>Test</Button>

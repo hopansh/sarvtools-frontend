@@ -29,27 +29,51 @@ const TimestampConverter = () => {
   };
   const handleDateToEpoch = () => {
     const d = new Date(date);
-    if (!isNaN(d.getTime())) setEpoch(Math.floor(d.getTime() / 1000).toString());
+    if (!isNaN(d.getTime()))
+      setEpoch(Math.floor(d.getTime() / 1000).toString());
     else setEpoch('Invalid date');
+  };
+
+  // Sample values
+  const handleSample = () => {
+    setEpoch('1714694400'); // 2024-05-03 00:00:00 UTC
+    setDate('2024-05-03 00:00:00');
   };
 
   return (
     <Styled theme={theme}>
-      <Card style={{ background: theme.colors.white, color: theme.colors.text }}>
+      <Card
+        style={{ background: theme.colors.white, color: theme.colors.text }}
+      >
         <div className="instructions">
           <Title level={3}>Timestamp Converter</Title>
           <Paragraph>
-            Convert between Unix epoch timestamps and human-readable date/time. Useful for developers, analysts, and anyone working with time data.
+            Convert between Unix epoch timestamps and human-readable date/time.
+            Useful for developers, analysts, and anyone working with time data.
           </Paragraph>
           <Paragraph type="secondary">
-            <b>Instructions:</b> Enter an epoch value and convert to date, or enter a date and convert to epoch seconds.
+            <b>Instructions:</b> Enter an epoch value and convert to date, or
+            enter a date and convert to epoch seconds.
           </Paragraph>
         </div>
         <Space direction="vertical" style={{ width: '100%' }} size="middle">
-          <Input value={epoch} onChange={e => setEpoch(e.target.value)} placeholder="Epoch seconds..." />
-          <Button block onClick={handleEpochToDate}>Epoch → Date</Button>
-          <Input value={date} onChange={e => setDate(e.target.value)} placeholder="YYYY-MM-DD HH:mm:ss..." />
-          <Button block onClick={handleDateToEpoch}>Date → Epoch</Button>
+          <Button onClick={handleSample} block>Sample</Button>
+          <Input
+            value={epoch}
+            onChange={(e) => setEpoch(e.target.value)}
+            placeholder="Epoch seconds..."
+          />
+          <Button type="primary" block onClick={handleEpochToDate}>
+            Epoch → Date
+          </Button>
+          <Input
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="YYYY-MM-DD HH:mm:ss..."
+          />
+          <Button type="primary" block onClick={handleDateToEpoch}>
+            Date → Epoch
+          </Button>
         </Space>
       </Card>
     </Styled>

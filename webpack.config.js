@@ -8,6 +8,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/',
   },
+  mode: 'production', // Enable production optimizations
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {

@@ -8,6 +8,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import Branding from '@/components/common/Atoms/Branding';
 import LanguageSwitcher from '@/components/common/Atoms/LanguageSwitcher';
 import { useThemeMode } from '@/contexts/ThemeContext';
+import { useSiteConfig } from '@/contexts/SiteConfigContext';
 
 const Header = styled.header<{ theme: any; isVisible: boolean }>`
   display: flex;
@@ -104,14 +105,14 @@ const HeaderSection: React.FC = () => {
           to="/tools"
           isActive={location.pathname.startsWith('/tools')}
         >
-          Tools
+          {useSiteConfig().headings.tools}
         </CustomNavLink>
         <CustomNavLink
           theme={theme}
           to="/about"
           isActive={location.pathname === '/about'}
         >
-          About
+          {useSiteConfig().headings.aboutUs}
         </CustomNavLink>
       </NavSection>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>

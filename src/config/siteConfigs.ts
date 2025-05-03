@@ -3,16 +3,16 @@ import { devTools, tools } from '@/constants/tools';
 const defaultConfig = {
   logo: 'defaultLogo',
   headerTitle: 'SarvTools',
-  landingContent: 'All-in-one tools for everyone.',
+  landingContent: 'The privacy-first, open-source toolbox for everyone.',
   headlines: {
     greeting: 'Welcome to SarvTools!',
-    modernTool: 'Discover Modern Tools for Every Need',
+    modernTool: 'Modern, Secure Tools for Every Need',
   },
   subHeadlines: {
     greeting:
-      'A privacy-focused toolbox for developers, writers, designers, and more.',
+      'A privacy-first, open-source toolbox for developers, writers, designers, students, and more.',
     modernTool:
-      'Explore a wide range of tools designed to simplify your tasks, from development to design, text processing, and more.',
+      'Explore wide range of tools for code, text, color, data, and more. 100% client-side. No sign-up. No data leaves your device.',
   },
   tools,
   content: {
@@ -20,42 +20,42 @@ const defaultConfig = {
       {
         question: 'What is SarvTools?',
         answer:
-          'SarvTools is a privacy-focused, client-side toolbox offering over 50+ tools across categories like Developer Utilities, Text Processing, Image Tools, Financial Calculators, Privacy Tools, and more.',
+          'SarvTools is a privacy-first, open-source toolbox offering wide range of tools for developers, creators, and everyday users. All tools run entirely in your browser—no data ever leaves your device.',
       },
       {
-        question: 'Who can benefit from SarvTools?',
+        question: 'Who should use SarvTools?',
         answer:
-          'SarvTools is designed for a wide range of users, including developers, writers, designers, marketers, students, and anyone looking for quick and efficient online tools.',
+          'Anyone! SarvTools is built for developers, writers, designers, students, marketers, and anyone who needs fast, reliable, and secure online tools.',
       },
       {
-        question: 'Are the tools free to use?',
+        question: 'Is SarvTools really free?',
         answer:
-          'Yes, all tools on SarvTools are completely free to use. Additionally, all processing happens on your device, ensuring your data remains private.',
+          'Yes. Every tool is 100% free to use, with no hidden costs or sign-ups. SarvTools is supported by the open-source community.',
       },
       {
-        question: 'What are some popular tools in SarvTools?',
+        question: 'How does SarvTools protect my privacy?',
         answer:
-          'Some of our most popular tools include the Code Formatter, JSON Validator, Image Compressor, Loan Calculator, Password Generator, and QR Code Generator.',
+          'All processing happens locally in your browser. No data is sent to any server, ensuring your information stays private and secure.',
       },
       {
-        question: 'How does SarvTools ensure privacy?',
+        question: 'What are some popular tools?',
         answer:
-          'SarvTools processes all data client-side, meaning no data is sent to any server. This ensures complete privacy and security for your information.',
+          'Popular tools include JSON Formatter, Regex Tester, Base64 Converter, QR Code Generator, Color Converter, and more. Explore the full list on the Tools page.',
       },
       {
         question: 'Can I contribute to SarvTools?',
         answer:
-          'Yes, SarvTools is open-source! You can contribute by adding new tools or improving existing ones. Visit our GitHub repository to get started.',
+          'Absolutely! SarvTools is open-source. You can add new tools, improve existing ones, or suggest features. Visit our GitHub repository to get started.',
       },
       {
-        question: 'Do I need to install anything to use SarvTools?',
+        question: 'Do I need to install anything?',
         answer:
-          'No installation is required. SarvTools is a web-based platform that works directly in your browser.',
+          'No installation or sign-up is required. SarvTools works instantly in your browser on any device.',
       },
     ],
     faqHeadline: 'Frequently Asked Questions',
-    aboutHeadline: 'About Us',
-    feedbackHeadline: 'Feedback Form',
+    aboutHeadline: 'About SarvTools',
+    feedbackHeadline: 'Feedback',
     feedbackNameLabel: 'Name',
     feedbackNamePlaceholder: 'Your Name',
     feedbackNameRequired: 'Please enter your name',
@@ -68,33 +68,37 @@ const defaultConfig = {
     about: {
       title: 'About SarvTools',
       description:
-        'Welcome to SarvTools.in, a zero-server, privacy-focused toolbox designed to empower developers, students, and professionals with a wide range of utilities. With over 50+ tools across various categories, SarvTools.in ensures 100% client-side processing, keeping your data private and secure.',
+        'SarvTools is a modern, open-source toolbox designed to empower developers, students, and professionals with free utilities. All tools run 100% client-side, so your data never leaves your device. No sign-up, no installation, no tracking—just fast, secure, and reliable tools for everyone.',
       features: [
-        'Privacy-Focused: All tools run entirely on your browser, ensuring no data leaves your device.',
-        'Developer Tools: JSON Formatter, Regex Tester, Base64 Converter, and more to enhance productivity.',
-        'Utility Tools: Color Converter, Timestamp Converter, Lorem Ipsum Generator, and others for everyday tasks.',
-        'Open Source: Contribute to the project and add your own tools to the platform.',
-        'User-Friendly Interface: Navigate through tools effortlessly with a clean and intuitive design.',
+        'Privacy-First: All tools run entirely in your browser. No data is ever sent to a server.',
+        'Open Source: Community-driven and open for contributions. Fork us on GitHub!',
+        'Wide Range of Free Tools: Code formatters, validators, converters, generators, and more.',
+        'Security: No tracking, no analytics, and no ads. Your data stays yours.',
+        'User Experience: Clean, accessible, and responsive design for all devices.',
+        'Instant Use: No sign-up or installation required. Use any tool instantly.',
       ],
       whySarvTools:
-        "SarvTools.in is your go-to solution for quick, reliable, and secure tools. Whether you're a developer debugging code, a student working on assignments, or a professional managing tasks, SarvTools.in provides a comprehensive suite of tools to simplify your workflow.",
+        'SarvTools is your go-to solution for quick, secure, and reliable tools. Whether you are debugging code, processing text, designing, or learning, SarvTools simplifies your workflow with a single, privacy-focused platform.',
       gettingStarted: [
-        'Explore Tools: Browse through our extensive collection of tools across categories.',
-        'Use Instantly: No sign-ups or installations required. Just open a tool and start using it.',
-        'Contribute: Add new tools or improve existing ones by contributing to our open-source repository.',
+        'Browse Tools: Discover and use any tool instantly—no registration needed.',
+        'Contribute: Add new tools or improve existing ones on our open-source GitHub repository.',
+        'Share: Recommend SarvTools to your friends and colleagues who value privacy and productivity.',
       ],
       contact: {
+        description:
+          'For inquiries, suggestions, or feedback, feel free to reach out to us. We value your input and are always looking to improve.',
         email: 'hopanshgahlot@gmail.com',
-        instagram: 'https://instagram.com/sarvtools',
+        github: 'https://github.com/hopansh/sarvtools-frontend',
       },
     },
     privacyPolicy:
-      'This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from SarvTools.',
+      'Read our full Privacy Policy at /privacy-policy. In short: SarvTools collects no personal data. All processing is local to your device.',
     termsOfService:
-      'These Terms of Service govern your use of the SarvTools application and website.',
-    feedbackSuccessMessage: 'Thank you for your feedback!',
+      'See our Terms of Service at /terms-of-service. By using SarvTools, you agree to use the tools responsibly and respect our open-source license.',
+    feedbackSuccessMessage:
+      'Thank you for your feedback! We appreciate your input.',
     feedbackErrorMessage:
-      'There was an error submitting your feedback. Please try again.',
+      'There was an error submitting your feedback. Please try again or contact us directly.',
   },
   buttons: {
     getStarted: 'Get Started',
@@ -103,6 +107,15 @@ const defaultConfig = {
     encode: 'Encode',
     decode: 'Decode',
   },
+  headings: {
+    aboutUs: 'About Us',
+    tools: 'Tools',
+    connect: 'Connect',
+    termsOfService: 'Terms of Service',
+    privacyPolicy: 'Privacy Policy',
+    whySarvTools: 'Why SarvTools?',
+    gettingStarted: 'Getting Started',
+  },
 };
 
 // Hindi translations for supported fields. Fallback to defaultConfig for missing fields.
@@ -110,16 +123,16 @@ const hindiConfig = {
   ...defaultConfig,
   logo: 'defaultLogo',
   headerTitle: 'सर्वटूल्स',
-  landingContent: 'हर किसी के लिए ऑल-इन-वन टूल्स।',
+  landingContent: 'प्राइवेसी-फर्स्ट, ओपन-सोर्स टूलबॉक्स, सभी के लिए।',
   headlines: {
     greeting: 'सर्वटूल्स में आपका स्वागत है!',
-    modernTool: 'हर आवश्यकता के लिए आधुनिक टूल्स खोजें',
+    modernTool: 'हर आवश्यकता के लिए आधुनिक, सुरक्षित टूल्स',
   },
   subHeadlines: {
     greeting:
-      'डेवलपर्स, राइटर्स, डिज़ाइनर्स और अन्य के लिए प्राइवेसी-फोकस्ड टूलबॉक्स।',
+      'डेवलपर्स, राइटर्स, डिज़ाइनर्स, स्टूडेंट्स और सभी के लिए प्राइवेसी-फर्स्ट, ओपन-सोर्स टूलबॉक्स।',
     modernTool:
-      'डिजाइन, टेक्स्ट प्रोसेसिंग और अन्य कार्यों को आसान बनाने के लिए बनाए गए टूल्स की विस्तृत श्रृंखला खोजें।',
+      'कोड, टेक्स्ट, कलर, डेटा आदि के लिए 50+ मुफ्त टूल्स। 100% क्लाइंट-साइड। कोई साइन-अप नहीं। आपका डेटा कभी भी डिवाइस से बाहर नहीं जाता।',
   },
   content: {
     ...defaultConfig.content,
@@ -127,42 +140,42 @@ const hindiConfig = {
       {
         question: 'सर्वटूल्स क्या है?',
         answer:
-          'सर्वटूल्स एक प्राइवेसी-फोकस्ड, क्लाइंट-साइड टूलबॉक्स है जिसमें 50+ से अधिक टूल्स हैं जैसे डेवलपर यूटिलिटीज, टेक्स्ट प्रोसेसिंग, इमेज टूल्स, फाइनेंशियल कैलकुलेटर्स, प्राइवेसी टूल्स आदि।',
+          'सर्वटूल्स एक प्राइवेसी-फर्स्ट, ओपन-सोर्स टूलबॉक्स है जिसमें 50+ मुफ्त टूल्स हैं। सभी टूल्स पूरी तरह आपके ब्राउज़र में चलते हैं—आपका डेटा कभी भी डिवाइस से बाहर नहीं जाता।',
       },
       {
-        question: 'सर्वटूल्स से कौन लाभ उठा सकता है?',
+        question: 'सर्वटूल्स किसके लिए है?',
         answer:
-          'सर्वटूल्स डेवलपर्स, राइटर्स, डिज़ाइनर्स, मार्केटर्स, स्टूडेंट्स और किसी भी ऐसे व्यक्ति के लिए है जिसे तेज़ और प्रभावी ऑनलाइन टूल्स की आवश्यकता है।',
+          'सभी के लिए! सर्वटूल्स डेवलपर्स, राइटर्स, डिज़ाइनर्स, स्टूडेंट्स, मार्केटर्स और किसी भी ऐसे व्यक्ति के लिए है जिसे तेज़, सुरक्षित और विश्वसनीय ऑनलाइन टूल्स चाहिए।',
       },
       {
-        question: 'क्या टूल्स का उपयोग मुफ्त है?',
+        question: 'क्या सर्वटूल्स वास्तव में मुफ्त है?',
         answer:
-          'हाँ, सर्वटूल्स के सभी टूल्स पूरी तरह से मुफ्त हैं और सभी प्रोसेसिंग आपके डिवाइस पर होती है, जिससे आपकी प्राइवेसी बनी रहती है।',
+          'हाँ। हर टूल 100% मुफ्त है, कोई छुपा शुल्क या साइन-अप नहीं। सर्वटूल्स ओपन-सोर्स कम्युनिटी द्वारा समर्थित है।',
       },
       {
-        question: 'सर्वटूल्स के कुछ लोकप्रिय टूल्स कौन से हैं?',
+        question: 'सर्वटूल्स मेरी प्राइवेसी कैसे सुरक्षित रखता है?',
         answer:
-          'हमारे सबसे लोकप्रिय टूल्स में कोड फॉर्मेटर, JSON वेलिडेटर, इमेज कंप्रेसर, लोन कैलकुलेटर, पासवर्ड जनरेटर और QR कोड जनरेटर शामिल हैं।',
+          'सभी प्रोसेसिंग आपके ब्राउज़र में ही होती है। कोई डेटा सर्वर पर नहीं जाता, जिससे आपकी जानकारी पूरी तरह सुरक्षित रहती है।',
       },
       {
-        question: 'सर्वटूल्स प्राइवेसी कैसे सुनिश्चित करता है?',
+        question: 'कुछ लोकप्रिय टूल्स कौन से हैं?',
         answer:
-          'सर्वटूल्स सभी डेटा को क्लाइंट-साइड प्रोसेस करता है, यानी कोई भी डेटा सर्वर पर नहीं जाता। इससे आपकी जानकारी पूरी तरह सुरक्षित रहती है।',
+          'लोकप्रिय टूल्स में JSON फॉर्मेटर, Regex टेस्टर, Base64 कन्वर्टर, QR कोड जनरेटर, कलर कन्वर्टर आदि शामिल हैं। सभी टूल्स पेज पर देखें।',
       },
       {
         question: 'क्या मैं सर्वटूल्स में योगदान कर सकता हूँ?',
         answer:
-          'हाँ, सर्वटूल्स ओपन-सोर्स है! आप नए टूल्स जोड़ सकते हैं या मौजूदा टूल्स को बेहतर बना सकते हैं। शुरू करने के लिए हमारे GitHub रिपॉजिटरी पर जाएँ।',
+          'बिल्कुल! सर्वटूल्स ओपन-सोर्स है। आप नए टूल्स जोड़ सकते हैं, मौजूदा को बेहतर बना सकते हैं या सुझाव दे सकते हैं। शुरू करने के लिए हमारे GitHub रिपॉजिटरी पर जाएँ।',
       },
       {
-        question: 'सर्वटूल्स का उपयोग करने के लिए कुछ इंस्टॉल करना पड़ेगा?',
+        question: 'क्या कुछ इंस्टॉल करना जरूरी है?',
         answer:
-          'नहीं, कोई इंस्टॉलेशन आवश्यक नहीं है। सर्वटूल्स एक वेब-आधारित प्लेटफॉर्म है जो सीधे आपके ब्राउज़र में चलता है।',
+          'नहीं, कोई इंस्टॉलेशन या साइन-अप जरूरी नहीं है। सर्वटूल्स आपके ब्राउज़र में तुरंत चलता है।',
       },
     ],
     faqHeadline: 'अक्सर पूछे जाने वाले प्रश्न',
-    aboutHeadline: 'हमारे बारे में',
-    feedbackHeadline: 'प्रतिक्रिया फ़ॉर्म',
+    aboutHeadline: 'सर्वटूल्स के बारे में',
+    feedbackHeadline: 'प्रतिक्रिया',
     feedbackNameLabel: 'नाम',
     feedbackNamePlaceholder: 'आपका नाम',
     feedbackNameRequired: 'कृपया अपना नाम दर्ज करें',
@@ -176,33 +189,35 @@ const hindiConfig = {
       ...defaultConfig.content.about,
       title: 'सर्वटूल्स के बारे में',
       description:
-        'SarvTools.in एक जीरो-सर्वर, प्राइवेसी-फोकस्ड टूलबॉक्स है जो डेवलपर्स, स्टूडेंट्स और प्रोफेशनल्स को विभिन्न यूटिलिटीज के साथ सशक्त बनाता है। 50+ से अधिक टूल्स के साथ, SarvTools.in 100% क्लाइंट-साइड प्रोसेसिंग सुनिश्चित करता है, जिससे आपका डेटा सुरक्षित रहता है।',
+        'SarvTools.in एक आधुनिक, ओपन-सोर्स टूलबॉक्स है जो डेवलपर्स, स्टूडेंट्स और प्रोफेशनल्स को 50+ मुफ्त यूटिलिटीज़ के साथ सशक्त बनाता है। सभी टूल्स 100% क्लाइंट-साइड चलते हैं, जिससे आपका डेटा कभी भी डिवाइस से बाहर नहीं जाता। कोई साइन-अप, कोई इंस्टॉलेशन, कोई ट्रैकिंग नहीं—सिर्फ तेज़, सुरक्षित और विश्वसनीय टूल्स।',
       features: [
-        'प्राइवेसी-फोकस्ड: सभी टूल्स पूरी तरह से आपके ब्राउज़र पर चलते हैं, जिससे कोई डेटा बाहर नहीं जाता।',
-        'डेवलपर टूल्स: JSON फॉर्मेटर, Regex टेस्टर, Base64 कन्वर्टर आदि।',
-        'यूटिलिटी टूल्स: कलर कन्वर्टर, टाइमस्टैम्प कन्वर्टर, Lorem Ipsum जनरेटर आदि।',
-        'ओपन सोर्स: प्रोजेक्ट में योगदान करें और अपने खुद के टूल्स जोड़ें।',
-        'यूज़र-फ्रेंडली इंटरफेस: क्लीन और सहज डिज़ाइन के साथ टूल्स को आसानी से नेविगेट करें।',
+        'प्राइवेसी-फर्स्ट: सभी टूल्स पूरी तरह आपके ब्राउज़र में चलते हैं। कोई डेटा सर्वर पर नहीं जाता।',
+        'ओपन सोर्स: कम्युनिटी-ड्रिवन और योगदान के लिए खुला। GitHub पर फोर्क करें!',
+        '50+ मुफ्त टूल्स: कोड फॉर्मेटर, वेलिडेटर, कन्वर्टर, जनरेटर आदि।',
+        'सुरक्षा: कोई ट्रैकिंग, कोई एनालिटिक्स, कोई विज्ञापन नहीं। आपका डेटा सिर्फ आपका है।',
+        'यूज़र एक्सपीरियंस: सभी डिवाइस के लिए क्लीन, एक्सेसिबल और रिस्पॉन्सिव डिज़ाइन।',
+        'इंस्टेंट यूज़: कोई साइन-अप या इंस्टॉलेशन नहीं। किसी भी टूल का तुरंत उपयोग करें।',
       ],
       whySarvTools:
-        'SarvTools.in आपके त्वरित, विश्वसनीय और सुरक्षित टूल्स का समाधान है। चाहे आप डेवलपर हों, स्टूडेंट हों या प्रोफेशनल, SarvTools.in आपके कार्यों को आसान बनाता है।',
+        'SarvTools आपके लिए तेज़, सुरक्षित और विश्वसनीय टूल्स का समाधान है। चाहे आप कोड डिबग कर रहे हों, टेक्स्ट प्रोसेस कर रहे हों, डिज़ाइनिंग कर रहे हों या सीख रहे हों—SarvTools एक ही प्लेटफॉर्म पर सब कुछ आसान बनाता है।',
       gettingStarted: [
-        'टूल्स एक्सप्लोर करें: विभिन्न श्रेणियों में हमारे टूल्स देखें।',
-        'तुरंत उपयोग करें: कोई साइन-अप या इंस्टॉलेशन नहीं। बस टूल खोलें और उपयोग शुरू करें।',
-        'योगदान करें: हमारे ओपन-सोर्स रिपॉजिटरी में नए टूल्स जोड़ें या मौजूदा को बेहतर बनाएं।',
+        'टूल्स ब्राउज़ करें: किसी भी टूल का तुरंत उपयोग करें—कोई रजिस्ट्रेशन नहीं।',
+        'योगदान करें: हमारे ओपन-सोर्स GitHub रिपॉजिटरी में नए टूल्स जोड़ें या मौजूदा को बेहतर बनाएं।',
+        'शेयर करें: SarvTools को अपने दोस्तों और सहकर्मियों के साथ शेयर करें जो प्राइवेसी और प्रोडक्टिविटी को महत्व देते हैं।',
       ],
       contact: {
-        ...defaultConfig.content.about.contact,
-        // No change needed for contact info
+        description:
+          'पूछताछ, सुझाव या प्रतिक्रिया के लिए, बेझिझक हमसे संपर्क करें। हम आपकी राय की सराहना करते हैं और हमेशा सुधारने के लिए तत्पर रहते हैं।',
       },
     },
     privacyPolicy:
-      'यह प्राइवेसी पॉलिसी बताती है कि SarvTools पर आपकी व्यक्तिगत जानकारी कैसे एकत्र, उपयोग और साझा की जाती है।',
+      'हमारी पूरी प्राइवेसी पॉलिसी /privacy-policy पर पढ़ें। संक्षेप में: SarvTools कोई व्यक्तिगत डेटा एकत्र नहीं करता। सभी प्रोसेसिंग आपके डिवाइस पर ही होती है।',
     termsOfService:
-      'ये टर्म्स ऑफ सर्विस SarvTools एप्लिकेशन और वेबसाइट के उपयोग को नियंत्रित करते हैं।',
-    feedbackSuccessMessage: 'आपकी प्रतिक्रिया के लिए धन्यवाद!',
+      'हमारे टर्म्स ऑफ सर्विस /terms-of-service पर देखें। SarvTools का उपयोग करके, आप टूल्स का जिम्मेदारी से उपयोग करने और हमारे ओपन-सोर्स लाइसेंस का सम्मान करने के लिए सहमत होते हैं।',
+    feedbackSuccessMessage:
+      'आपकी प्रतिक्रिया के लिए धन्यवाद! हम आपके इनपुट की सराहना करते हैं।',
     feedbackErrorMessage:
-      'आपकी प्रतिक्रिया सबमिट करने में त्रुटि हुई। कृपया पुनः प्रयास करें।',
+      'आपकी प्रतिक्रिया सबमिट करने में त्रुटि हुई। कृपया पुनः प्रयास करें या सीधे संपर्क करें।',
   },
   buttons: {
     getStarted: 'शुरू करें',
@@ -210,6 +225,15 @@ const hindiConfig = {
     submit: 'सबमिट करें',
     encode: 'एन्कोड करें',
     decode: 'डिकोड करें',
+  },
+  headings: {
+    aboutUs: 'हमारे बारे में',
+    tools: 'टूल्स',
+    connect: 'कनेक्ट करें',
+    termsOfService: 'सेवा की शर्तें',
+    privacyPolicy: 'प्राइवेसी पॉलिसी',
+    whySarvTools: 'सर्वटूल्स क्यों?',
+    gettingStarted: 'शुरू करना',
   },
 };
 

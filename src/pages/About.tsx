@@ -7,11 +7,11 @@ import {
   MailOutlined,
   InstagramOutlined,
   ContactsOutlined,
+  GithubOutlined,
 } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import Logo from '@/assets/mobile.png';
 import AboutUs from '@/assets/aboutUs3D.png';
-import FloatingObjectsBackground from '@/components/common/Atoms/FloatingContent';
 import { useSiteConfig } from '@/contexts/SiteConfigContext';
 import { useThemeMode } from '@/contexts/ThemeContext';
 
@@ -39,37 +39,51 @@ const Styled = styled.div<{ theme: any }>`
 `;
 
 const About: React.FC = () => {
-  const { content } = useSiteConfig();
+  const { content, headings } = useSiteConfig();
   const { theme } = useThemeMode();
   const aboutContent = content.about;
 
   return (
     <Styled theme={theme} className="container">
-      <FloatingObjectsBackground />
-      <Card style={{ margin: '20px', background: 'transparent', color: theme.colors.text }}>
-        <Title level={2} style={{ color: theme.colors.primary }}>{content.aboutHeadline}</Title>
+      <Card
+        style={{
+          margin: '20px',
+          background: 'transparent',
+          color: theme.colors.text,
+        }}
+      >
+        <Title level={2} style={{ color: theme.colors.primary }}>
+          {headings.aboutUs}
+        </Title>
         <Divider style={{ borderColor: theme.colors.secondary }} />
         <Space direction="vertical" size="large" style={{ display: 'flex' }}>
           <div className="about-main">
             <img src={AboutUs} alt="logo" className="about-logo" />
-            <Paragraph style={{ color: theme.colors.text }}>{aboutContent.description}</Paragraph>
+            <div className="main-content">
+              <Paragraph style={{ color: theme.colors.text }}>
+                {aboutContent.description}
+              </Paragraph>
+              <Title level={3} style={{ color: theme.colors.primary }}>
+                <InfoCircleOutlined /> Key Features
+              </Title>
+              <Paragraph style={{ color: theme.colors.text }}>
+                <ul>
+                  {aboutContent.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </Paragraph>
+            </div>
           </div>
+
           <Title level={3} style={{ color: theme.colors.primary }}>
-            <InfoCircleOutlined /> Key Features
+            <SettingOutlined />{headings.whySarvTools}
           </Title>
           <Paragraph style={{ color: theme.colors.text }}>
-            <ul>
-              {aboutContent.features.map((feature, index) => (
-                <li key={index}>{feature}</li>
-              ))}
-            </ul>
+            {aboutContent.whySarvTools}
           </Paragraph>
           <Title level={3} style={{ color: theme.colors.primary }}>
-            <SettingOutlined /> Why SarvTools.in?
-          </Title>
-          <Paragraph style={{ color: theme.colors.text }}>{aboutContent.whySarvTools}</Paragraph>
-          <Title level={3} style={{ color: theme.colors.primary }}>
-            <GlobalOutlined /> Getting Started
+            <GlobalOutlined /> {headings.gettingStarted}
           </Title>
           <Paragraph style={{ color: theme.colors.text }}>
             <ol>
@@ -81,25 +95,31 @@ const About: React.FC = () => {
         </Space>
         <Divider style={{ borderColor: theme.colors.secondary }} />
         <Title level={2} style={{ color: theme.colors.primary }}>
-          <ContactsOutlined /> Contact Us
+          <ContactsOutlined /> {headings.connect}
         </Title>
         <Divider style={{ borderColor: theme.colors.secondary }} />
         <div className="contact-us-container">
           <Space direction="vertical" size="small" style={{ display: 'flex' }}>
             <Paragraph style={{ color: theme.colors.text }}>
-              We&apos;d love to hear from you! If you have any questions, suggestions, or need support, feel free to reach out to us through the following channels:
+             {aboutContent.contact.description}
             </Paragraph>
             <Title level={3} style={{ color: theme.colors.primary }}>
               <MailOutlined /> Email
             </Title>
             <Paragraph style={{ color: theme.colors.text }}>
-              <a href={`mailto:${aboutContent.contact.email}`}>{aboutContent.contact.email}</a>
+              <a href={`mailto:${aboutContent.contact.email}`}>
+                {aboutContent.contact.email}
+              </a>
             </Paragraph>
             <Title level={3} style={{ color: theme.colors.primary }}>
-              <InstagramOutlined /> Instagram
+              <GithubOutlined /> GitHub
             </Title>
             <Paragraph style={{ color: theme.colors.text }}>
-              <a href={aboutContent.contact.instagram} target="_blank" rel="noopener noreferrer">
+              <a
+                href={aboutContent.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 @sarvtools
               </a>
             </Paragraph>

@@ -29,6 +29,12 @@ const JsonFormatter = () => {
     }
   };
 
+  // Sample value
+  const handleSample = () => {
+    setInput('{"greeting": "hello", "target": "world"}');
+    setOutput('');
+  };
+
   return (
     <Styled>
       <div className="instructions">
@@ -44,6 +50,7 @@ const JsonFormatter = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <TextArea
           rows={8}
           value={input}

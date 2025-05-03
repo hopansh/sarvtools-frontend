@@ -34,6 +34,13 @@ export default function Base64Converter() {
     }
   };
 
+  // Sample value
+  const handleSample = () => {
+    if (mode === 'encode') setInput('Hello, world!');
+    else setInput('SGVsbG8sIHdvcmxkIQ==');
+    setOutput('');
+  };
+
   return (
     <Styled>
       <div className="instructions">
@@ -46,6 +53,7 @@ export default function Base64Converter() {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <Radio.Group value={mode} onChange={(e) => setMode(e.target.value)}>
           <Radio value="encode">Encode</Radio>
           <Radio value="decode">Decode</Radio>

@@ -42,6 +42,14 @@ const NumberConverter = () => {
     }
   };
 
+  // Sample values
+  const handleSample = () => {
+    setInput('42');
+    setFromBase(10);
+    setToBase(16);
+    setOutput('');
+  };
+
   return (
     <Styled theme={theme}>
       <div className="instructions">
@@ -54,6 +62,7 @@ const NumberConverter = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <Input value={input} onChange={e => setInput(e.target.value)} placeholder="Enter number..." />
         <Space>
           <Select value={fromBase} onChange={setFromBase}>
@@ -64,7 +73,7 @@ const NumberConverter = () => {
             {bases.map(b => <Option key={b.value} value={b.value}>{b.label}</Option>)}
           </Select>
         </Space>
-        <Button onClick={handleConvert}>Convert</Button>
+        <Button type="primary" onClick={handleConvert}>Convert</Button>
         <Input value={output} readOnly placeholder="Result..." />
       </Space>
     </Styled>

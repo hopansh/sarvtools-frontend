@@ -33,6 +33,11 @@ const QRCodeGenerator = () => {
     link.click();
   };
 
+  // Sample value
+  const handleSample = () => {
+    setText('https://www.google.com/search?q=sarvtools');
+  };
+
   return (
     <Styled theme={theme}>
       <div className="instructions">
@@ -45,6 +50,7 @@ const QRCodeGenerator = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle" align="center">
+        <Button onClick={handleSample} block>Sample</Button>
         {text ? (
           <div ref={qrRef}>
             <QRCode value={text} />
@@ -67,7 +73,7 @@ const QRCodeGenerator = () => {
           </div>
         )}
         {text && (
-          <Button onClick={handleDownload} style={{ marginBottom: 8 }}>
+          <Button type="primary" onClick={handleDownload} style={{ marginBottom: 8 }}>
             Download QR Code
           </Button>
         )}

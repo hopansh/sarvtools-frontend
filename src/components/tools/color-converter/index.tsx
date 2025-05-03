@@ -53,6 +53,12 @@ const ColorConverter = () => {
   const handleHexToRgb = () => setRgb(hexToRgb(hex));
   const handleRgbToHex = () => setHex(rgbToHex(rgb));
 
+  // Sample values
+  const handleSample = () => {
+    setHex('#ff0000');
+    setRgb('rgb(255,0,0)');
+  };
+
   return (
     <Styled theme={theme}>
       <div className="instructions">
@@ -65,13 +71,14 @@ const ColorConverter = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <div className="input-row">
           <Input
             placeholder="#RRGGBB"
             value={hex}
             onChange={e => setHex(e.target.value)}
           />
-          <Button onClick={handleHexToRgb} block>HEX → RGB</Button>
+          <Button type="primary" onClick={handleHexToRgb} block>HEX → RGB</Button>
         </div>
         <div className="input-row">
           <Input
@@ -79,7 +86,7 @@ const ColorConverter = () => {
             value={rgb}
             onChange={e => setRgb(e.target.value)}
           />
-          <Button onClick={handleRgbToHex} block>RGB → HEX</Button>
+          <Button type="primary" onClick={handleRgbToHex} block>RGB → HEX</Button>
         </div>
       </Space>
     </Styled>

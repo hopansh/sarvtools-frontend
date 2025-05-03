@@ -33,6 +33,12 @@ const JwtDecoder = () => {
 
   const handleDecode = () => setOutput(decodeJwt(input));
 
+  // Sample value
+  const handleSample = () => {
+    setInput('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiam9obmRvZSIsImlhdCI6MTY4MzAwMDAwMH0.signature');
+    setOutput('');
+  };
+
   return (
     <Styled>
       <div className="instructions">
@@ -45,6 +51,7 @@ const JwtDecoder = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <TextArea rows={4} value={input} onChange={e => setInput(e.target.value)} placeholder="Paste JWT here..." />
         <Button type="primary" block onClick={handleDecode}>Decode</Button>
         <TextArea rows={8} value={output} readOnly placeholder="Decoded JWT payload will appear here" />

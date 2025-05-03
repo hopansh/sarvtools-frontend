@@ -28,6 +28,12 @@ const LoremIpsum = () => {
     setOutput(Array(count).fill(LOREM).join('\n\n'));
   };
 
+  // Sample value
+  const handleSample = () => {
+    setCount(2);
+    setOutput('');
+  };
+
   return (
     <Styled theme={theme}>
       <div className="instructions">
@@ -40,6 +46,7 @@ const LoremIpsum = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <InputNumber min={1} max={10} value={count} onChange={v => setCount(Number(v))} />
         <Button type="primary" block onClick={handleGenerate}>Generate</Button>
         <textarea rows={6} value={output} readOnly style={{ width: '100%' }} placeholder="Generated lorem ipsum will appear here" />

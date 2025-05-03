@@ -30,6 +30,12 @@ const JsonValidator = () => {
     }
   };
 
+  // Sample value
+  const handleSample = () => {
+    setInput('{"name": "John", "age": 30}');
+    setValid(null);
+  };
+
   return (
     <Styled>
       <div className="instructions">
@@ -42,6 +48,7 @@ const JsonValidator = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <TextArea rows={8} value={input} onChange={e => setInput(e.target.value)} placeholder="Paste JSON here..." />
         <Button type="primary" block onClick={handleValidate}>Validate</Button>
         {valid === true && <Alert message="Valid JSON" type="success" showIcon />}

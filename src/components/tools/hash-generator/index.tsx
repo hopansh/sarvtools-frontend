@@ -39,6 +39,12 @@ const HashGenerator = () => {
     else setOutput('Not implemented');
   };
 
+  // Sample value
+  const handleSample = () => {
+    setInput('hello world');
+    setOutput('');
+  };
+
   return (
     <Styled>
       <div className="instructions">
@@ -51,6 +57,7 @@ const HashGenerator = () => {
         </Paragraph>
       </div>
       <Space direction="vertical" style={{ width: '100%' }} size="middle">
+        <Button onClick={handleSample} block>Sample</Button>
         <Select value={algo} onChange={setAlgo} style={{ width: 120 }}>
           <Option value="sha256">SHA-256</Option>
           <Option value="md5">MD5</Option>

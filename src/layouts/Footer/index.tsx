@@ -79,11 +79,11 @@ const FooterSection: React.FC = () => {
         </Row>
         <Row gutter={[32, 32]}>
           <Col xs={24} sm={12} md={6}>
-            <FooterTitle level={4}>About Us</FooterTitle>
-            <FooterLink theme={theme} to="/about">About</FooterLink>
+            <FooterTitle level={4}>{useSiteConfig().headings.aboutUs}</FooterTitle>
+            <FooterLink theme={theme} to="/about">{useSiteConfig().headings.aboutUs}</FooterLink>
           </Col>
           <Col xs={24} sm={12} md={12}>
-            <FooterTitle level={4}>Tools</FooterTitle>
+            <FooterTitle level={4}>{useSiteConfig().headings.tools}</FooterTitle>
             <Row gutter={[0, 0]}>
               <Col xs={24} sm={12}>
                 {toolsCol1.map((tool: { id: string; name: string }) => (
@@ -104,7 +104,7 @@ const FooterSection: React.FC = () => {
             </Row>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <FooterTitle level={4}>Connect</FooterTitle>
+            <FooterTitle level={4}>{useSiteConfig().headings.connect}</FooterTitle>
             <Space direction="horizontal" size="middle">
               <SocialIcon
                 theme={theme}
@@ -128,8 +128,8 @@ const FooterSection: React.FC = () => {
         <Row justify="center" align="middle" style={{ marginTop: '40px' }}>
           <Col>
             <Space split={<span style={{ margin: '0 8px' }}>|</span>}>
-              <FooterLink theme={theme} to="/terms-of-service">Terms of Service</FooterLink>
-              <FooterLink theme={theme} to="/privacy-policy">Privacy Policy</FooterLink>
+              <FooterLink theme={theme} to="/terms-of-service">{useSiteConfig().headings.termsOfService}</FooterLink>
+              <FooterLink theme={theme} to="/privacy-policy">{useSiteConfig().headings.privacyPolicy}</FooterLink>
             </Space>
           </Col>
         </Row>
