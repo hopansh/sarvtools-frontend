@@ -64,7 +64,7 @@ const About: React.FC = () => {
                 {aboutContent.description}
               </Paragraph>
               <Title level={3} style={{ color: theme.colors.primary }}>
-                <InfoCircleOutlined /> Key Features
+                <InfoCircleOutlined /> {headings.keyFeatures}
               </Title>
               <Paragraph style={{ color: theme.colors.text }}>
                 <ul>

@@ -115,6 +115,7 @@ const defaultConfig = {
     privacyPolicy: 'Privacy Policy',
     whySarvTools: 'Why SarvTools?',
     gettingStarted: 'Getting Started',
+    keyFeatures: 'Key Features',
   },
 };
 
@@ -234,6 +235,7 @@ const hindiConfig = {
     privacyPolicy: 'प्राइवेसी पॉलिसी',
     whySarvTools: 'सर्वटूल्स क्यों?',
     gettingStarted: 'शुरू करना',
+    keyFeatures: 'मुख्य विशेषताएँ',
   },
 };
 
